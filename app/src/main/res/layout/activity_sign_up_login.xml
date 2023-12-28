@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,12 +26,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <LinearLayout
-        android:layout_marginTop="@dimen/_80sdp"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_140sdp"
         android:orientation="vertical"
         tools:context=".SignUpLoginActivity">
 
@@ -38,70 +46,86 @@
         <EditText
             android:id="@+id/firstName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:ems="10"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/tv_bg"
             android:hint="First Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp" />
 
         <EditText
             android:id="@+id/lastName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:ems="10"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/_10sdp"
             android:hint="Last Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/_15sdp" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:ems="10"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/_10sdp"
             android:hint="Email"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/_15sdp" />
 
         <EditText
             android:id="@+id/pass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:ems="10"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/_10sdp"
             android:hint="Create Password"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/_15sdp" />
 
         <EditText
             android:id="@+id/com_pass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:ems="10"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/_10sdp"
             android:hint="Confirm Password"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/_15sdp" />
 
         <Button
             android:id="@+id/signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_8sdp"
             android:backgroundTint="#F68B8B"
-            android:text="Sign Up" />
+            android:textSize="@dimen/_15sdp"
+            android:text="Signup"
+            android:padding="@dimen/_10sdp"/>
 
 
         <TextView
             android:id="@+id/switch_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:text="@string/account" />
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:paddingLeft="@dimen/_60sdp"
+            android:textSize="@dimen/_12sdp"
+            android:text="@string/account"
+
+            />
 
         <Button
             android:id="@+id/facebook"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_8sdp"
             android:drawableLeft="@drawable/facebook"
             android:text="Log in with Facebook"
             app:strokeColor="#F68B8B" />
@@ -111,16 +135,11 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_8sdp"
             android:drawableLeft="@drawable/google"
             android:text="Log in with Google"
             app:strokeColor="#F68B8B" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ellipse2"
-            android:layout_marginLeft="-30dp"
-            />
+
 
     </LinearLayout>
 

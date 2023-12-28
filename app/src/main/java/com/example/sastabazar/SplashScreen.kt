@@ -15,15 +15,15 @@ class SplashScreen : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             if(FirebaseAuth.getInstance().currentUser == null)
             {
-                startActivity(Intent(this,SignUpLoginActivity::class.java))
+                startActivity(Intent(this,LoginActivity::class.java))
                 finish()
             }
             else
             {
-                startActivity(Intent(this,HomeActivity ::class.java))
+                startActivity(Intent(this,HomeActivity::class.java))
                 finish()
             }
-        },3000)
+        },2000)
 
     }
 }

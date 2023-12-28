@@ -18,6 +18,10 @@ class SignUpLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.switchText.setOnClickListener {
+            startActivity(Intent(this@SignUpLoginActivity , LoginActivity::class.java))
+        }
+
         binding.signUp.setOnClickListener {
 
             //To create the new User

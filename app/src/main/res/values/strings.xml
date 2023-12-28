@@ -2,6 +2,7 @@
     <string name="app_name">Sasta Bazar</string>
     <string name="title_text">Let’s Choice\n <b>Your Own Style</b></string>
     <string name="account">Already have an account? <b> Login </b></string>
+    <string name="signUpAccount">Don’t have an account? <b> Signup </b></string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -56,5 +57,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="login">Login</string>
 
 </resources>
