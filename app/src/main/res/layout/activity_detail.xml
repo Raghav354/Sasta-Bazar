@@ -27,25 +27,68 @@
             app:srcCompat="@drawable/image_bg" />
 
         <!-- Bottom Image Overlay -->
+
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="One Shoulder Linen Dress"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="0dp"
             android:layout_height="@dimen/_70sdp"
-            app:srcCompat="@drawable/bottom_bg"
             app:layout_constraintBottom_toBottomOf="@id/product_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/bottom_bg" />
 
         <!-- Rating Bar -->
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.96" />
+            app:layout_constraintVertical_bias="0.88" />
+
+        <TextView
+            android:id="@+id/rs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:text="Rs."
+            android:textSize="@dimen/_20ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="5740"
+            android:textSize="@dimen/_28ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rs"
+            app:layout_constraintLeft_toRightOf="@+id/rs"
+            app:layout_constraintTop_toTopOf="@+id/rs"
+            app:layout_constraintVertical_bias="0.65999997" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- Buttons Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,45 +98,115 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Buy Now Button -->
-        <Button
-            android:id="@+id/buy_now"
+        <TextView
+            android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.Material3.Button"
-            android:backgroundTint="#F68B8B"
-            android:layout_marginTop="16dp"
-            android:text="Buy Now"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:text="Size"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Add to WishList Button -->
-        <Button
-            android:id="@+id/button4"
+        <TextView
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.Material3.Button"
-            android:backgroundTint="#F68B8B"
-            android:layout_marginTop="16dp"
-            android:text="Add to Cart"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="See more"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView7"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:text="Specification"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:layout_constraintBottom_toTopOf="@+id/product_desc"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/product_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_product_desc"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:layout_constraintBottom_toTopOf="@+id/buy_now"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buy_now" />
+            />
+
+        <!-- Buy Now Button -->
+        <Button
+            android:id="@+id/buy_now"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:backgroundTint="#F68B8B"
+            android:text="Buy Now"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@+id/button4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- Add to Cart Button -->
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button4"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:backgroundTint="@color/darker_gray"
+            android:text="Add to Cart"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@+id/addToWishlist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Add to WishList Button -->
+        <TextView
+            android:id="@+id/addToWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            style="@style/Widget.Material3.Button"
-            android:backgroundTint="#F68B8B"
-            android:text="Add to Wishlist"
+            android:text="  Add to WishList"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:textColor="@color/app_theme"
+            android:drawableStart="@drawable/icon_heart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -24,6 +24,9 @@ class DetailActivity : AppCompatActivity() {
             productModel=it.toObject<ProductModel>()!!
             productModel.id=it.id
             binding.productImage.load(productModel.imageUrl)
+            binding.productName.text = productModel.name
+            binding.productDesc.text = productModel.disp
+            binding.productPrice.text = productModel.price.toString()
 
         }
         binding.buyNow.setOnClickListener{

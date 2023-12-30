@@ -10,6 +10,8 @@
     <string name="profile">Profile</string>
     <string name="cart">Cart</string>
     <string name="wishlist">Wishlist</string>
+    <string name="placeholder_product_desc">Dress \nMaterial : Linen \nMaterial Composition : 100% Linen \nPlease bear in mind that the photo may be slightly different from the actual item in terms of color due to lighting conditions or the display used to view:</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
