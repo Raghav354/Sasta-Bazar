@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.models.SlideModel
 import com.example.sastabazar.databinding.FragmentDashBoardBinding
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.ktx.firestore
@@ -76,8 +78,14 @@ class DashBoardFragment : Fragment() {
         }
 
 
+//        Image slider ->  imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
+        val imageList = ArrayList<SlideModel>()
 
+        imageList.add(SlideModel(R.drawable.sale1))
+        imageList.add(SlideModel(R.drawable.sale2))
 
+        val imageSlider = binding.imageSlider
+        imageSlider.setImageList(imageList)
 
     }
 
