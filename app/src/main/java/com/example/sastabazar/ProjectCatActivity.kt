@@ -15,14 +15,14 @@ class ProjectCatActivity : AppCompatActivity() {
         ActivityProjectCatBinding.inflate(layoutInflater)
     }
     private lateinit var productList: ArrayList<ProductModel>
-    private lateinit  var adapter:ProductAdapter
+    private lateinit  var adapter:CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         productList = ArrayList()
-        adapter = ProductAdapter(this@ProjectCatActivity,productList)
+        adapter = CategoryAdapter(this@ProjectCatActivity,productList)
         binding.rv.layoutManager =LinearLayoutManager(this)
         binding.rv.adapter = adapter
 

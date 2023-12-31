@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background = "@color/app_theme">
 
         <!-- Product Image -->
         <ImageView
@@ -23,7 +24,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="fitXY"
             app:srcCompat="@drawable/image_bg" />
 
         <!-- Bottom Image Overlay -->
@@ -103,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:text="Size"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
@@ -125,12 +126,11 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
             android:text="Color"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -139,27 +139,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:text="Specification"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:layout_constraintBottom_toTopOf="@+id/product_desc"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <TextView
             android:id="@+id/product_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/placeholder_product_desc"
-            android:textSize="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/placeholder_product_desc"
+            android:textSize="@dimen/_13sdp"
             app:layout_constraintBottom_toTopOf="@+id/buy_now"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <!-- Buy Now Button -->
         <Button

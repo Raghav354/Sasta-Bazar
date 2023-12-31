@@ -90,12 +90,6 @@ class DashBoardFragment : Fragment() {
     }
 
 
-    //Getting data from firebase -> only 10 items
-    private fun getProductData(){
-
-    }
-
-
     companion object {
 
     }
