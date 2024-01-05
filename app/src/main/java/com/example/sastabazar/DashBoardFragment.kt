@@ -76,6 +76,12 @@ class DashBoardFragment : Fragment() {
         binding.bottoms.setOnClickListener{
             startActivity(Intent(requireContext(),ProjectCatActivity::class.java).putExtra("Category","Bottoms"))
         }
+        binding.seeMore.setOnClickListener {
+            startActivity(Intent(requireContext(),ProjectCatActivity::class.java))
+        }
+        binding.seeMore2.setOnClickListener {
+            startActivity(Intent(requireContext(),ProjectCatActivity::class.java))
+        }
 
 
 //        Image slider ->  imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
@@ -83,6 +89,7 @@ class DashBoardFragment : Fragment() {
 
         imageList.add(SlideModel(R.drawable.sale1))
         imageList.add(SlideModel(R.drawable.sale2))
+        imageList.add(SlideModel(R.drawable.sale1))
 
         val imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList)

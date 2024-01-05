@@ -5,31 +5,359 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
-
-        <Button
-            android:id="@+id/button_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/next"
-            app:layout_constraintBottom_toTopOf="@id/textview_first"
+        android:padding="@dimen/_10sdp">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/arrow_back"
+                app:title="Return to Cart"
+                android:alpha="2"
+                />
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/rv_item_cat"
+            tools:itemCount="1"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/rv"
+            app:layout_constraintEnd_toEndOf="@id/rv"
+            />
+
+        <!--        Prize calculation -->
+        <TextView
+            android:id="@+id/subTotalTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Sub Total:"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+        <TextView
+            android:id="@+id/rs1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs:"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/subTotalTxtView"
+            app:layout_constraintBottom_toBottomOf="@id/subTotalTxtView"
+            app:layout_constraintEnd_toStartOf="@id/subTotalTxt"
+            />
 
         <TextView
-            android:id="@+id/textview_first"
+            android:id="@+id/subTotalTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="5799"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/rs1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rs1" />
+
+        <TextView
+            android:id="@+id/shippingTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Shipping:"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="@+id/subTotalTxtView"
+            app:layout_constraintTop_toBottomOf="@id/subTotalTxtView" />
+
+        <TextView
+            android:id="@+id/shippingTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Free"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/shippingTxtView" />
+
+        <TextView
+            android:id="@+id/totalPrizeTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Total:"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="@+id/shippingTxtView"
+            app:layout_constraintTop_toBottomOf="@id/shippingTxtView" />
+
+        <TextView
+            android:id="@+id/rs2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs:"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/totalPrizeTxtView"
+            app:layout_constraintRight_toLeftOf="@+id/totalPrizeTxt"
+            tools:layout_editor_absoluteX="331dp" />
+
+        <TextView
+            android:id="@+id/totalPrizeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5799"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/rs2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rs2"
+             />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/totalPrizeTxtView"
+            app:layout_constraintEnd_toEndOf="@id/totalPrizeTxt"
+            />
+
+<!--        User Contact Information-->
+
+        <TextView
+            android:id="@+id/contactInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Contact Information"
+            android:textStyle="bold"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/logintxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="@id/contactInfo"
+            app:layout_constraintBottom_toBottomOf="@id/contactInfo"
+            app:layout_constraintEnd_toEndOf="@id/divider2"
+            />
+
+        <EditText
+            android:id="@+id/userEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Email"
+            android:inputType="text"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contactInfo" />
+
+<!--        Shipping Address-->
+        <TextView
+            android:id="@+id/shippingAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Shipping Address"
+            android:textStyle="bold"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintTop_toBottomOf="@id/userEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Country/Region"
+            android:inputType="text"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_first" />
+            app:layout_constraintTop_toBottomOf="@id/shippingAdd" />
+
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:hint="First Name"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/_12sdp"
+            android:paddingLeft="@dimen/_6sdp"
+            android:inputType="text"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/country" />
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Last Name"
+            android:inputType="text"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/first_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/first_name" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Address"
+            android:inputType="text"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/first_name" />
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:hint="City"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/_12sdp"
+            android:paddingLeft="@dimen/_6sdp"
+            android:inputType="text"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <EditText
+            android:id="@+id/postalCode"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Postal Code"
+            android:inputType="text"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/city"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/city" />
+
+        <EditText
+            android:id="@+id/contactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Contact Number"
+            android:inputType="number"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Save this information for next time"
+            android:textColor="@color/grey_font"
+            app:layout_constraintTop_toBottomOf="@+id/contactNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+<!--        Shipping method -> Online or POD/COD-->
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rounded_stroke"
+            android:padding = "@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            app:layout_constraintTop_toBottomOf="@id/checkBox"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Standard free delivery over 4500"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/darker_gray"
+                />
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cash on delivery over Rs:4500 (Free Delivery, COD processing fee only)"/>
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonFirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue Shipping"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

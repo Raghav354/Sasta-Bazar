@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_marginStart="@dimen/_2sdp">
+    android:layout_marginStart="@dimen/_2sdp"
+    android:layout_marginTop="@dimen/_20sdp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -56,7 +57,7 @@
 
         <TextView
             android:id="@+id/product_code"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_50ssp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_9sdp"
             android:maxLines="2"
@@ -72,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rs."
-        android:layout_marginStart="@dimen/_1sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:textSize="@dimen/_10ssp"
          />
 

@@ -32,6 +32,9 @@ class DetailActivity : AppCompatActivity() {
         binding.buyNow.setOnClickListener{
             startActivity(Intent(this@DetailActivity,ShippingActivity::class.java))
         }
+        binding.addToWishlist.setOnClickListener{
+
+        }
 
     }
 }

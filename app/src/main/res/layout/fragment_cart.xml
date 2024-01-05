@@ -143,19 +143,19 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="wrap_content"
             android:gravity="bottom"
-            android:text="5739"
-            android:textSize="@dimen/_10ssp"
+            android:text="00"
+            android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
             />
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/addToCartBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/app_theme"
-        android:backgroundTint="@android:color/darker_gray"
+        style="@style/Widget.Material3.Button"
+        android:backgroundTint="#8C8585"
         android:text="Checkout"
         android:textColor="@color/white"
         android:textSize="@dimen/_12ssp"
