@@ -13,8 +13,9 @@
         android:theme="@style/Theme.SastaBazar"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
+            android:name=".activities.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".SplashScreen"
             android:exported="true">
@@ -25,23 +26,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShippingActivity"
+            android:name=".activities.ShippingActivity"
             android:exported="false"
             android:label="@string/title_activity_shipping"
             android:theme="@style/Theme.SastaBazar" />
         <activity
-            android:name=".ProjectCatActivity"
+            android:name=".activities.ProjectCatActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".activities.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".SignUpLoginActivity"
-            android:exported="false" />
+            android:name=".activities.SignUpLoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

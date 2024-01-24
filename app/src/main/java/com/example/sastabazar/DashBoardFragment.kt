@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.sastabazar.activities.ProjectCatActivity
+import com.example.sastabazar.adaptors.ProductAdapter
 import com.example.sastabazar.databinding.FragmentDashBoardBinding
-import com.google.firebase.firestore.firestore
+import com.example.sastabazar.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
@@ -21,7 +21,7 @@ class DashBoardFragment : Fragment() {
 
     private lateinit var binding : FragmentDashBoardBinding
     private lateinit var productList: ArrayList<ProductModel>
-    private lateinit  var adapter:ProductAdapter
+    private lateinit  var adapter: ProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,22 +65,22 @@ class DashBoardFragment : Fragment() {
             }
 
         binding.dress.setOnClickListener{
-            startActivity(Intent(requireContext(),ProjectCatActivity::class.java).putExtra("Category","Dresses"))
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Dresses"))
         }
         binding.jumpsuits.setOnClickListener{
-            startActivity(Intent(requireContext(),ProjectCatActivity::class.java).putExtra("Category","JumpSuits"))
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","JumpSuits"))
         }
         binding.tops.setOnClickListener{
-            startActivity(Intent(requireContext(),ProjectCatActivity::class.java).putExtra("Category","Tops"))
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Tops"))
         }
         binding.bottoms.setOnClickListener{
-            startActivity(Intent(requireContext(),ProjectCatActivity::class.java).putExtra("Category","Bottoms"))
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Bottoms"))
         }
         binding.seeMore.setOnClickListener {
-            startActivity(Intent(requireContext(),ProjectCatActivity::class.java))
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
         }
         binding.seeMore2.setOnClickListener {
-            startActivity(Intent(requireContext(),ProjectCatActivity::class.java))
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
         }
 
 

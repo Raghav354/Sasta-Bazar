@@ -1,8 +1,10 @@
-package com.example.sastabazar
+package com.example.sastabazar.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import com.example.sastabazar.databinding.ActivityLoginBinding
 import com.google.firebase.auth.ktx.auth
@@ -36,9 +38,45 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else {
+            }
+            else {
                 Toast.makeText(this , "Empty fields are not allowed!!" , Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.facebook.setOnClickListener{
+            //sign in by facebook account
+        }
+        binding.google.setOnClickListener{
+            //sign in by google account
+
+        }
+
+        //textWatcher on login button
+        binding.email.addTextChangedListener(textWatcher)
+        binding.password.addTextChangedListener(textWatcher)
+    }
+
+    //only enables the button when all the required field are filled.
+    private val textWatcher = object : TextWatcher{
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            binding.login.isEnabled = binding.email.text.toString().trim().isNotEmpty()
+                    && binding.password.text.toString().trim().isNotEmpty()
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 }

@@ -60,5 +60,6 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="login">Login</string>
+    <string name="RedirectText">After clicking “Pay now”, you will be redirected to Razor Pay Payement gateway to complete your purchase securely.</string>
 
 </resources>

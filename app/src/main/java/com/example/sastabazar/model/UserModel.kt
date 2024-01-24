@@ -1,4 +1,4 @@
-package com.example.sastabazar
+package com.example.sastabazar.model
 
 class UserModel {
     var firstName:String = ""

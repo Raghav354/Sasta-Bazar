@@ -1,10 +1,11 @@
-package com.example.sastabazar
+package com.example.sastabazar.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sastabazar.adaptors.CategoryAdapter
+import com.example.sastabazar.model.ProductModel
 import com.example.sastabazar.databinding.ActivityProjectCatBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject

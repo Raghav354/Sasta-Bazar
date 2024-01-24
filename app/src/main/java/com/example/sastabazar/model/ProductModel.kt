@@ -1,4 +1,4 @@
-package com.example.sastabazar
+package com.example.sastabazar.model
 
 data class ProductModel(
     var id:String? = null,

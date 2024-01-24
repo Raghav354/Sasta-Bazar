@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailActivity">
+    tools:context=".activities.DetailActivity">
 
     <!-- Product Image Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="One Shoulder Linen Dress"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_22ssp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ratingBar"
@@ -101,7 +101,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
         <TextView
             android:id="@+id/textView7"
@@ -116,7 +117,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/seeMore_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="See more"
@@ -128,7 +129,7 @@
 
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -148,10 +149,10 @@
             android:text="Specification"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="@+id/color"
             app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/color" />
 
         <TextView
             android:id="@+id/product_desc"
@@ -160,10 +161,19 @@
             android:layout_margin="@dimen/_16sdp"
             android:text="@string/placeholder_product_desc"
             android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttons_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
+        >
         <!-- Buy Now Button -->
         <Button
             android:id="@+id/buy_now"
@@ -176,9 +186,9 @@
             android:backgroundTint="#F68B8B"
             android:text="Buy Now"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/product_desc"
-            app:layout_constraintStart_toStartOf="@+id/product_desc"
-            app:layout_constraintTop_toBottomOf="@+id/product_desc" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Add to Cart Button -->
         <Button
@@ -186,10 +196,10 @@
             style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/darker_gray"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:backgroundTint="@color/darker_gray"
             android:text="Add to Cart"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/buy_now"
@@ -201,16 +211,16 @@
             android:id="@+id/addToWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:drawableStart="@drawable/icon_heart"
             android:text="  Add to WishList"
             android:textColor="@color/app_theme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/addToCart"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addToCart" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

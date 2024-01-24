@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpLoginActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".activities.SignUpLoginActivity">
 
     <TextView
         android:id="@+id/product_code"
@@ -26,13 +27,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ellipse2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ellipse2"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -40,7 +41,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_140sdp"
         android:orientation="vertical"
-        tools:context=".SignUpLoginActivity">
+        tools:context=".activities.SignUpLoginActivity">
 
 
         <EditText
@@ -83,8 +84,8 @@
             android:layout_margin="@dimen/_8sdp"
             android:background="@drawable/tv_bg"
             android:paddingLeft="@dimen/_10sdp"
-            android:hint="Create Password"
-            android:inputType="text"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:textSize="@dimen/_15sdp" />
 
         <EditText
@@ -95,7 +96,7 @@
             android:background="@drawable/tv_bg"
             android:paddingLeft="@dimen/_10sdp"
             android:hint="Confirm Password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textSize="@dimen/_15sdp" />
 
         <Button
@@ -106,6 +107,7 @@
             android:backgroundTint="#F68B8B"
             android:textSize="@dimen/_15sdp"
             android:text="Signup"
+            android:enabled="false"
             android:padding="@dimen/_10sdp"/>
 
 

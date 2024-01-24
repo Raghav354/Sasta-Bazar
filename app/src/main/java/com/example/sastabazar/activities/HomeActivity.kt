@@ -1,12 +1,11 @@
-package com.example.sastabazar
+package com.example.sastabazar.activities
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.sastabazar.R
 import com.example.sastabazar.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_12sdp"
+        app:cardElevation="@dimen/_16sdp"
+        android:outlineSpotShadowColor="@color/black"
         android:backgroundTint="#F19C9C">
 
         <ImageView
@@ -20,12 +22,14 @@
             app:srcCompat="@drawable/image" />
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_12sdp"
-        app:strokeColor="@android:color/darker_gray"
-        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp"
+        android:backgroundTint="@color/white"
+        app:cardElevation="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,5 +93,5 @@
                 app:layout_constraintTop_toTopOf="@+id/ruppees"
                 app:layout_constraintVertical_bias="1.0"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
