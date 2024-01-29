@@ -1,18 +1,25 @@
 package com.example.sastabazar.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import com.example.sastabazar.databinding.ActivityBuyDressBinding
 import com.example.sastabazar.model.ProductModel
-import com.example.sastabazar.databinding.ActivityDetailBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 
 class DetailActivity : AppCompatActivity() {
+    //initialize fireabase database and auth references
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var auth:FirebaseAuth
+
     val binding by lazy {
-        ActivityDetailBinding.inflate(layoutInflater)
+        ActivityBuyDressBinding.inflate(layoutInflater)
     }
 
     var productModel = ProductModel()
@@ -30,11 +37,26 @@ class DetailActivity : AppCompatActivity() {
             binding.productDesc.text = productModel.disp
             binding.productPrice.text = productModel.price.toString()
 
+
+
+
+            databaseReference = FirebaseDatabase.getInstance().reference
+            auth = FirebaseAuth.getInstance()
+
+
+
         }
         binding.buyNow.setOnClickListener{
-            startActivity(Intent(this@DetailActivity, ShippingActivity::class.java))
+
+            val intent = Intent(this@DetailActivity, ShippingActivity::class.java)
+            startActivity(intent)
         }
+
+
         binding.addToWishlist.setOnClickListener{
+
+        }
+        binding.addToCart.setOnClickListener {
 
         }
 

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sastabazar.adaptors.CategoryAdapter
-import com.example.sastabazar.model.ProductModel
+import com.example.sastabazar.adapters.CategoryAdapter
 import com.example.sastabazar.databinding.ActivityProjectCatBinding
+import com.example.sastabazar.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase

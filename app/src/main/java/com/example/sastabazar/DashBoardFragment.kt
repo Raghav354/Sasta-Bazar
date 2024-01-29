@@ -2,14 +2,14 @@ package com.example.sastabazar
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.sastabazar.activities.ProjectCatActivity
-import com.example.sastabazar.adaptors.ProductAdapter
+import com.example.sastabazar.adapters.ProductAdapter
 import com.example.sastabazar.databinding.FragmentDashBoardBinding
 import com.example.sastabazar.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore

@@ -10,7 +10,7 @@
     <string name="profile">Profile</string>
     <string name="cart">Cart</string>
     <string name="wishlist">Wishlist</string>
-    <string name="placeholder_product_desc">Dress \nMaterial : Linen \nMaterial Composition : 100% Linen \nPlease bear in mind that the photo may be slightly different from the actual item in terms of color due to lighting conditions or the display used to view:</string>
+    <string name="placeholder_product_desc">\nMaterial Composition : 100% Linen \nPlease bear in mind that the photo may be slightly different from the actual item in terms of color due to lighting conditions or the display used to view:</string>
 
 
 
@@ -22,6 +22,8 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <string name="material_composition_100_linen">Material Composition : 100% Linen</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -60,6 +62,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="login">Login</string>
+    <string name="dress_material_linen">Dress material - Linen</string>
     <string name="RedirectText">After clicking “Pay now”, you will be redirected to Razor Pay Payement gateway to complete your purchase securely.</string>
 
 </resources>

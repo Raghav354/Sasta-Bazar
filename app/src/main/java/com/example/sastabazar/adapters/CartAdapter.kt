@@ -1,11 +1,11 @@
-package com.example.sastabazar.adaptors
+package com.example.sastabazar.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sastabazar.model.ProductModel
 import com.example.sastabazar.databinding.RvItemCartBinding
+import com.example.sastabazar.model.ProductModel
 
 class CartAdapter(var context:Context , var productList:ArrayList<ProductModel>)
     : RecyclerView.Adapter<CartAdapter.ViewHolder>() {

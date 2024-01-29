@@ -1,11 +1,11 @@
 package com.example.sastabazar.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.sastabazar.databinding.ActivityLoginBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
         //If new user is here
         binding.signUpText.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, SignUpLoginActivity::class.java))
+            startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
         }
 
         //User is already exist
@@ -49,6 +49,8 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.google.setOnClickListener{
             //sign in by google account
+
+
 
         }
 

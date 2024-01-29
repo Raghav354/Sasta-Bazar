@@ -1,4 +1,4 @@
-package com.example.sastabazar.adaptors
+package com.example.sastabazar.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.sastabazar.model.ProductModel
 import com.example.sastabazar.R
 import com.example.sastabazar.activities.DetailActivity
 import com.example.sastabazar.databinding.RvItemCatBinding
+import com.example.sastabazar.model.ProductModel
 
 class CategoryAdapter(var context: Context, var productList: ArrayList<ProductModel>) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {

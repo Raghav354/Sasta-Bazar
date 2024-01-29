@@ -1,20 +1,20 @@
 package com.example.sastabazar.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.sastabazar.databinding.ActivitySignUpBinding
 import com.example.sastabazar.model.UserModel
-import com.example.sastabazar.databinding.ActivitySignUpLoginBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class SignUpLoginActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     private val binding by lazy {
-        ActivitySignUpLoginBinding.inflate(layoutInflater)
+        ActivitySignUpBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,8 @@ class SignUpLoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.switchText.setOnClickListener {
-            startActivity(Intent(this@SignUpLoginActivity , LoginActivity::class.java))
+            startActivity(Intent(this@SignUpActivity , LoginActivity::class.java))
+            finish()
         }
 
         binding.signUp.setOnClickListener {
@@ -31,7 +32,7 @@ class SignUpLoginActivity : AppCompatActivity() {
 
             if(binding.pass.text.toString() != binding.comPass.text.toString())
             {
-                Toast.makeText(this@SignUpLoginActivity , "Password and Confirm password must be same." , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SignUpActivity , "Password and Confirm password must be same." , Toast.LENGTH_SHORT).show()
             }
             else
             {
@@ -55,13 +56,13 @@ class SignUpLoginActivity : AppCompatActivity() {
                         Firebase.database.reference.child("Users").child(Firebase.auth.currentUser?.uid!!)
                             .setValue(userModel).addOnSuccessListener {
                                 //If user successfully created
-                                startActivity(Intent(this@SignUpLoginActivity , LoginActivity::class.java))
+                                startActivity(Intent(this@SignUpActivity , LoginActivity::class.java))
                                 finish()
 
                             }
                             .addOnFailureListener {
                                 //If user creation failed.
-                                Toast.makeText(this@SignUpLoginActivity, it.localizedMessage, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@SignUpActivity, it.localizedMessage, Toast.LENGTH_SHORT).show()
                             }
                     }
                     else {
