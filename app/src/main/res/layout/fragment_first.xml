@@ -202,7 +202,7 @@
             />
 
         <EditText
-            android:id="@+id/country"
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
@@ -229,7 +229,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/bg_rounded_stroke"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
         <EditText
             android:id="@+id/last_name"

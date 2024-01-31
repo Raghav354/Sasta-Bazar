@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sastabazar.R
-import com.example.sastabazar.activities.DetailActivity
+import com.example.sastabazar.activities.BuyDressActivity
 import com.example.sastabazar.databinding.RvItemBinding
 import com.example.sastabazar.model.ProductModel
 
@@ -30,19 +30,19 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
     //Uploading the products on the app from firebase and set the name and prize of the product
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.binding.productImage.load(productList.get(position).imageUrl)
+        holder.binding.productImage.load(productList.get(position).productImage)
         {
             placeholder(R.drawable.image)
         }
-        holder.binding.productName.text = productList.get(position).name
-        holder.binding.productCode.text = productList.get(position).id
-        holder.binding.productPrice.text = productList.get(position).price.toString()
+        holder.binding.dressname.text = productList.get(position).productName
+        holder.binding.productCode.text = productList.get(position).productUUID
+        holder.binding.originalprice.text = productList.get(position).productPrice.toString()
 
         holder.itemView.setOnClickListener {
             context.startActivity(
-                Intent(context, DetailActivity::class.java).putExtra(
+                Intent(context, BuyDressActivity::class.java).putExtra(
                     "PRODUCT_ID",
-                    productList.get(position).id
+                    productList.get(position).productUUID
                 )
             )
 

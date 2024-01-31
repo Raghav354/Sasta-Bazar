@@ -64,13 +64,17 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:text="Items"
-            android:textSize="@dimen/_14sdp"
+            android:layout_marginLeft="@dimen/_6sdp"
+            android:gravity="fill_horizontal"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="italic"
             />
         <TextView
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:text="Price"
-            android:textSize="@dimen/_14sdp"
+            android:layout_marginLeft="@dimen/_60sdp"
+            android:textSize="@dimen/_10sdp"
             />
 
     </LinearLayout>
@@ -79,7 +83,7 @@
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:background="@color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/searchView"
         app:layout_constraintStart_toStartOf="@id/searchView"

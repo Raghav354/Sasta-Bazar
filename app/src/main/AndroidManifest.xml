@@ -34,7 +34,7 @@
             android:name=".activities.ProjectCatActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.DetailActivity"
+            android:name=".activities.BuyDressActivity"
             android:exported="false" />
         <activity
             android:name=".activities.HomeActivity"

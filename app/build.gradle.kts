@@ -63,4 +63,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.5.0")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
+    //spinner
+    implementation("com.github.skydoves:powerspinner:1.2.7")
+
 }

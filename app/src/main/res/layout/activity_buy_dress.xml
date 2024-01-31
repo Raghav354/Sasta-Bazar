@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/_5sdp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.DetailActivity">
+    tools:context=".activities.BuyDressActivity">
 
     <!-- Product Image Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +36,7 @@
         <!-- Bottom Image Overlay -->
 
         <TextView
-            android:id="@+id/product_name"
+            android:id="@+id/dressname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -74,13 +75,14 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_14sdp"
             android:text="Rs."
+            android:textColor="@color/black"
             android:textSize="@dimen/_20ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/discountprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -92,7 +94,18 @@
             app:layout_constraintTop_toTopOf="@+id/rs"
             app:layout_constraintVertical_bias="0.65999997" />
 
+        <!-- Add to WishList Button -->
 
+        <ImageButton
+            android:id="@+id/addtowishlist"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/icon_heart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -347,7 +360,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_14sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:backgroundTint="#F68B8B"
             android:text="Buy Now"
@@ -358,7 +371,7 @@
 
         <!-- Add to Cart Button -->
         <Button
-            android:id="@+id/addToCart"
+            android:id="@+id/addtocart"
             style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -371,36 +384,6 @@
             app:layout_constraintEnd_toEndOf="@+id/buy_now"
             app:layout_constraintStart_toStartOf="@+id/buy_now"
             app:layout_constraintTop_toBottomOf="@+id/buy_now" />
-
-        <!-- Add to WishList Button -->
-        <TextView
-            android:id="@+id/addToWishlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:drawableStart="@drawable/icon_heart"
-            android:text="  Add to WishList"
-            android:textColor="@color/app_theme"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/addToCart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addToCart" />
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/buttons_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginRight="@dimen/_16sdp"
-        >
-        <!-- Buy Now Button -->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

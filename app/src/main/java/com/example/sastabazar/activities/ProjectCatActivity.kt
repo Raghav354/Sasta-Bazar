@@ -36,7 +36,7 @@ class ProjectCatActivity : AppCompatActivity() {
                     productList.clear()
                     for (i in it.documents) {
                         var tempProductModel = i.toObject<ProductModel>()
-                        tempProductModel?.id = i.id
+                        tempProductModel?.productUUID = i.id
                         productList.add(tempProductModel!!)
                     }
                     adapter.notifyDataSetChanged()
@@ -49,7 +49,7 @@ class ProjectCatActivity : AppCompatActivity() {
                 productList.clear()
                 for (i in it.documents) {
                     var tempProductModel = i.toObject<ProductModel>()
-                    tempProductModel?.id = i.id
+                    tempProductModel?.productUUID = i.id
                     productList.add(tempProductModel!!)
                 }
                 adapter.notifyDataSetChanged()

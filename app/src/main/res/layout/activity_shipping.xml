@@ -1,26 +1,384 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".activities.ShippingActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
+    tools:context=".FirstFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10sdp">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="@dimen/_35sdp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="2"
+                app:navigationIcon="@drawable/arrow_back"
+                app:title="Return to Cart"
+                />
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBar"
+            tools:itemCount="1"
+            tools:listitem="@layout/rv_item_cat"
+            />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/darker_gray"
+            app:layout_constraintEnd_toEndOf="@id/rv"
+            app:layout_constraintTop_toBottomOf="@id/rv"
+            />
 
-    <include layout="@layout/content_shipping" />
+        <!--        Prize calculation -->
+        <TextView
+            android:id="@+id/subTotalTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Sub Total:"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+        <TextView
+            android:id="@+id/rs1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs:"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/subTotalTxtView"
+            app:layout_constraintEnd_toStartOf="@id/subTotalTxt"
+            app:layout_constraintTop_toTopOf="@id/subTotalTxtView"
+            />
+
+        <TextView
+            android:id="@+id/subTotalTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:text="5799"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/rs1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rs1" />
+
+        <TextView
+            android:id="@+id/shippingTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Shipping:"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="@+id/subTotalTxtView"
+            app:layout_constraintTop_toBottomOf="@id/subTotalTxtView" />
+
+        <TextView
+            android:id="@+id/shippingTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:text="Free"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/shippingTxtView" />
+
+        <TextView
+            android:id="@+id/totalPrizeTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Total:"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/shippingTxtView"
+            app:layout_constraintTop_toBottomOf="@id/shippingTxtView" />
+
+        <TextView
+            android:id="@+id/rs2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs:"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toLeftOf="@+id/totalPrizeTxt"
+            app:layout_constraintTop_toTopOf="@id/totalPrizeTxtView"
+            tools:layout_editor_absoluteX="331dp" />
+
+        <TextView
+            android:id="@+id/totalPrizeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:text="5799"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rs2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rs2"
+            />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/darker_gray"
+            app:layout_constraintEnd_toEndOf="@id/totalPrizeTxt"
+            app:layout_constraintTop_toBottomOf="@id/totalPrizeTxtView"
+            />
+
+        <!--        User Contact Information-->
+
+        <TextView
+            android:id="@+id/contactInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Contact Information"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            />
+
+        <TextView
+            android:id="@+id/logintxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@id/contactInfo"
+            app:layout_constraintEnd_toEndOf="@id/divider2"
+            app:layout_constraintTop_toTopOf="@id/contactInfo"
+            />
+
+        <EditText
+            android:id="@+id/userEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Email"
+            android:inputType="text"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contactInfo" />
+
+        <!--        Shipping Address-->
+        <TextView
+            android:id="@+id/shippingAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Shipping Address"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userEmail"
+            />
+        
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/shippingAdd"
+            app:layout_constraintStart_toStartOf="@id/shippingAdd"
+            app:layout_constraintTop_toBottomOf="@id/shippingAdd"
+            app:strokeColor="@color/primary_pink"
+            app:strokeWidth="@dimen/_2sdp">
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:hint="Choose Your States"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textColor="@color/primary_pink"
+            android:textColorHint="@color/black"
+            android:textSize="14.5sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shippingAdd"
+            app:spinner_arrow_gravity="end"
+            app:spinner_arrow_padding="8dp"
+            app:spinner_divider_color="@color/white"
+            app:spinner_divider_show="true"
+            app:spinner_divider_size="0.4dp"
+            app:spinner_item_array="@array/indian_states"
+            app:spinner_item_height="40dp"
+            app:spinner_popup_animation="dropdown"
+            app:spinner_popup_background="@color/white"
+            app:spinner_popup_elevation="14dp"
+            app:spinner_popup_max_height="250dp" />
+
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="First Name"
+            android:inputType="text"
+            android:paddingLeft="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Last Name"
+            android:inputType="text"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/first_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/first_name" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Address"
+            android:inputType="text"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/first_name" />
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="City"
+            android:inputType="text"
+            android:paddingLeft="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <EditText
+            android:id="@+id/postalCode"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Postal Code"
+            android:inputType="text"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/city"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/city" />
+
+        <EditText
+            android:id="@+id/contactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:gravity="center_vertical"
+            android:hint="Contact Number"
+            android:inputType="number"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Save this information for next time"
+            android:textColor="@color/grey_font"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contactNumber"
+            />
+
+        <!--        Shipping method -> Online or POD/COD-->
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_rounded_stroke"
+            android:padding = "@dimen/_10sdp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkBox">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Standard free delivery over 4500"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/darker_gray"
+                />
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cash on delivery over Rs:4500 (Free Delivery, COD processing fee only)"/>
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continueButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/darker_gray"
+            android:text="Continue Shipping"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup"/>
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
