@@ -1,4 +1,4 @@
-package com.example.sastabazar.adapters
+package com.example.sastabazar.adaptors
 
 import android.content.Context
 import android.view.LayoutInflater

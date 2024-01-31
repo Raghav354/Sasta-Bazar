@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.sastabazar.activities.ProjectCatActivity
-import com.example.sastabazar.adapters.ProductAdapter
+import com.example.sastabazar.adaptors.ProductAdapter
 import com.example.sastabazar.databinding.FragmentDashBoardBinding
 import com.example.sastabazar.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore

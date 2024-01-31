@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
         //If new user is here
         binding.signUpText.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
+            startActivity(Intent(this@LoginActivity, SignUpLoginActivity::class.java))
         }
 
         //User is already exist
@@ -49,8 +49,6 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.google.setOnClickListener{
             //sign in by google account
-
-
 
         }
 
