@@ -176,7 +176,7 @@
         >
         <!-- Buy Now Button -->
         <Button
-            android:id="@+id/buy_now"
+            android:id="@+id/buynow"
             style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,9 +202,9 @@
             android:backgroundTint="@color/darker_gray"
             android:text="Add to Cart"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/buy_now"
-            app:layout_constraintStart_toStartOf="@+id/buy_now"
-            app:layout_constraintTop_toBottomOf="@+id/buy_now" />
+            app:layout_constraintEnd_toEndOf="@+id/buynow"
+            app:layout_constraintStart_toStartOf="@+id/buynow"
+            app:layout_constraintTop_toBottomOf="@+id/buynow" />
 
         <!-- Add to WishList Button -->
         <TextView

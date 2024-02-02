@@ -31,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
             binding.productPrice.text = productModel.price.toString()
 
         }
-        binding.buyNow.setOnClickListener{
+        binding.buynow.setOnClickListener{
             startActivity(Intent(this@DetailActivity, ShippingActivity::class.java))
         }
         binding.addToWishlist.setOnClickListener{

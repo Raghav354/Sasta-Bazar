@@ -1,0 +1,8 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_selected="true" android:drawable="@drawable/rectangle_selected_bg_text" />
+    <!-- Pressed state -->
+    <item android:state_pressed="true" android:drawable="@drawable/rectangle_bg_text" />
+    <!-- Default state -->
+    <item android:drawable="@drawable/rectangle_bg_text" />
+</selector>

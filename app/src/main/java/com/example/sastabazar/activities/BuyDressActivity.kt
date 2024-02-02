@@ -17,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 class BuyDressActivity : AppCompatActivity() {
     private var selectedDressQuantity=1
     private var selectedDressSize ="UK 8"
-    private var selectedDressColor = R.drawable.green_color_rectangel_bg
+    private var selectedDressColor = R.drawable.pink_color_item
 //    private var flashSaleDressItem : ProductModel = ProductModel()
     private lateinit var binding: ActivityBuyDressBinding
 
@@ -39,11 +39,11 @@ class BuyDressActivity : AppCompatActivity() {
         Firebase.firestore.collection("Products").document(productId!!).get().addOnSuccessListener {
 
             productModel = it.toObject<ProductModel>()!!
-            productModel.productUUID = it.id
-            binding.productImage.load(productModel.productImage)
-            binding.dressname.text = productModel.productName
-            binding.productDesc.text = productModel.productDisp
-            binding.discountprice.text = productModel.productPrice.toString()
+            productModel.id = it.id
+            binding.productImage.load(productModel.imageUrl)
+            binding.dressname.text = productModel.name
+            binding.productDesc.text = productModel.disp
+            binding.discountprice.text = productModel.price.toString()
 
         }
 
@@ -53,7 +53,7 @@ class BuyDressActivity : AppCompatActivity() {
         binding.apply {
             add.setOnClickListener{increaseNumber()}
             subtract.setOnClickListener{decreaseNumber()}
-            buyNow.setOnClickListener { buyThisDress() }
+            buynow.setOnClickListener { buyThisDress() }
             addtocart.setOnClickListener { addToCart() }
             addtowishlist.setOnClickListener{addToWishList()}
 
@@ -69,8 +69,7 @@ class BuyDressActivity : AppCompatActivity() {
     }
 
     private fun buyThisDress() {
-        val intentbuynow = Intent(this@BuyDressActivity, ShippingActivity::class.java)
-        startActivity(intentbuynow)
+        startActivity(Intent(this@BuyDressActivity, ShippingActivity::class.java))
     }
 
     private fun increaseNumber() {
@@ -80,7 +79,6 @@ class BuyDressActivity : AppCompatActivity() {
                 binding.number.text=(number+1).toString()
             }
             selectedDressQuantity = number + 1
-
         }
     }
 
@@ -91,6 +89,7 @@ class BuyDressActivity : AppCompatActivity() {
                 binding.number.text=(number-1).toString()
             }
             selectedDressQuantity = number - 1
+
         }
     }
     private fun handleSizeSelection(){

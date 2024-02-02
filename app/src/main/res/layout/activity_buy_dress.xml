@@ -211,7 +211,7 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:padding="4dp"
-            android:src="@drawable/add"
+            android:src="@drawable/plus"
            />
 
             <TextView
@@ -231,7 +231,7 @@
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:padding="4dp"
-                android:src="@drawable/subtract"
+                android:src="@drawable/minus"
                 />
 
         </LinearLayout>
@@ -325,37 +325,22 @@
             app:layout_constraintTop_toBottomOf="@+id/specification" />
 
         <TextView
-            android:id="@+id/dressmaterialcomposition"
+            android:id="@+id/productDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="@string/material_composition_100_linen"
+            android:text="@string/lorem_ipsum"
             android:textColor="@color/highlightedtextcolor"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/dressmaterial"
             app:layout_constraintTop_toBottomOf="@+id/dressmaterial" />
 
-        <TextView
-            android:id="@+id/product_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/highlighttextfont"
-            android:lineSpacingMultiplier="1.2"
-            android:lines="6"
-            android:text="@string/lorem_ipsum"
-            android:textColor="@color/highlightedtextcolor"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/dressmaterialcomposition"
-            app:layout_constraintTop_toBottomOf="@+id/dressmaterialcomposition" />
+
 
         <Button
-            android:id="@+id/buy_now"
+            android:id="@+id/buynow"
             style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -367,7 +352,7 @@
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_desc" />
+            app:layout_constraintTop_toBottomOf="@id/productDesc" />
 
         <!-- Add to Cart Button -->
         <Button
@@ -378,12 +363,14 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@color/darker_gray"
             android:text="Add to Cart"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/buy_now"
-            app:layout_constraintStart_toStartOf="@+id/buy_now"
-            app:layout_constraintTop_toBottomOf="@+id/buy_now" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/buynow"
+            app:layout_constraintStart_toStartOf="@+id/buynow"
+            app:layout_constraintTop_toBottomOf="@+id/buynow" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

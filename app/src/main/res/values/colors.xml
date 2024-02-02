@@ -4,5 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="app_theme">#F68B8B</color>
     <color name="darker_gray">#aaa</color>
+    <color name="greybg">#797988</color>
+    <color name="primary_pink">#F68B8B</color>
+    <color name="dress_yellow">#FBE417</color>
+    <color name="dress_blue">#3DC6AD</color>
+    <color name="dress_green">#6EB85F</color>
+    <color name="highlightedtextcolor">#8C8585</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
 
 </resources>

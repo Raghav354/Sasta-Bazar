@@ -1,5 +1,6 @@
 package com.example.sastabazar.activities
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -7,6 +8,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sastabazar.databinding.ActivityLoginBinding
+import com.example.sastabazar.databinding.LoginsuccessdialogboxBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -32,8 +34,9 @@ class LoginActivity : AppCompatActivity() {
                     email, pass
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                        finish()
+                        Toast.makeText(this@LoginActivity, "login", Toast.LENGTH_SHORT)
+                            .show()
+                        showLoginSuccesDialog()
                     } else {
                         Toast.makeText(this, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
@@ -78,5 +81,22 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+    }
+    private fun showLoginSuccesDialog() {
+
+        val loginsuccessdialog= Dialog(this@LoginActivity)
+        val bind: LoginsuccessdialogboxBinding =  LoginsuccessdialogboxBinding.inflate(layoutInflater)
+        loginsuccessdialog.setContentView(bind.root)
+
+        val donebtn = bind.donebtn
+
+        bind.logincongrats.text="Congratulations, you have \ncompleted your Login !"
+
+        donebtn.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+            finish()
+        }
+
+        loginsuccessdialog.show()
     }
 }

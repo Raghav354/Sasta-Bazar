@@ -25,19 +25,19 @@ class CategoryAdapter(var context: Context, var productList: ArrayList<ProductMo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.productImage.load(productList.get(position).productImage)
+        holder.binding.productImage.load(productList.get(position).imageUrl)
         {
             placeholder(R.drawable.image)
         }
-        holder.binding.dressname.text = productList.get(position).productName
-        holder.binding.coupancode.text = productList.get(position).productUUID
-        holder.binding.price.text = productList.get(position).productPrice.toString()
+        holder.binding.dressname.text = productList.get(position).name
+        holder.binding.coupancode.text = productList.get(position).id
+        holder.binding.price.text = productList.get(position).price.toString()
 
         holder.itemView.setOnClickListener {
             context.startActivity(
                 Intent(context, BuyDressActivity::class.java).putExtra(
                     "PRODUCT_ID",
-                    productList.get(position).productUUID
+                    productList.get(position).id
                 )
             )
 

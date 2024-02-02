@@ -122,6 +122,36 @@
 
             />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp">
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:dividerColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:text="OR"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/materialDivider"
+                app:layout_constraintEnd_toEndOf="@+id/materialDivider"
+                app:layout_constraintHorizontal_bias="0.531"
+                app:layout_constraintStart_toStartOf="@+id/materialDivider"
+                app:layout_constraintTop_toTopOf="@+id/materialDivider" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <Button
             android:id="@+id/facebook"
             style="@style/Widget.Material3.Button.OutlinedButton"
