@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBar"
             tools:itemCount="1"
-            tools:listitem="@layout/rv_item_cat"
+            tools:listitem="@layout/rv_item_cart"
             />
         <View
             android:id="@+id/divider"

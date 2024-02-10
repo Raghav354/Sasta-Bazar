@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.sastabazar.R
+import com.example.sastabazar.adaptors.CartAdapter
 import com.example.sastabazar.databinding.ActivityBuyDressBinding
 import com.example.sastabazar.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore
@@ -69,7 +70,11 @@ class BuyDressActivity : AppCompatActivity() {
     }
 
     private fun buyThisDress() {
-        startActivity(Intent(this@BuyDressActivity, ShippingActivity::class.java))
+        val intent = Intent(this@BuyDressActivity , ShippingActivity::class.java)
+        intent.putExtra("DressName" , binding.dressname.text.toString())
+        intent.putExtra("DiscountPrize" , binding.discountprice.text.toString())
+        intent.putExtra("DressImage" , binding.productImage.toString())
+        startActivity(intent)
     }
 
     private fun increaseNumber() {
