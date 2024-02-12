@@ -94,8 +94,8 @@
 
                     <ImageView
                         android:id="@+id/dress"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:background="@drawable/ellipse_round"
                         android:scaleType="centerInside"
                         android:src="@drawable/dress"
@@ -117,12 +117,11 @@
 
                     <ImageView
                         android:id="@+id/tops"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:background="@drawable/ellipse_round"
                         android:scaleType="centerInside"
-                        android:src="@drawable/top"
-                        />
+                        android:src="@drawable/top" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -140,12 +139,11 @@
 
                     <ImageView
                         android:id="@+id/bottoms"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:background="@drawable/ellipse_round"
                         android:scaleType="centerInside"
-                        android:src="@drawable/bottoms"
-                        />
+                        android:src="@drawable/bottoms" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -163,12 +161,11 @@
 
                     <ImageView
                         android:id="@+id/jumpsuits"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:background="@drawable/ellipse_round"
                         android:scaleType="centerInside"
-                        android:src="@drawable/jumpsuit"
-                        />
+                        android:src="@drawable/jumpsuit" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -177,6 +174,31 @@
                         />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/saree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/_10sdp">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/ellipse_round"
+                        android:scaleType="fitXY"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/sari" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Jumpsuit"
+                        />
+
+                </LinearLayout>
+
             </LinearLayout>
         </HorizontalScrollView>
 

@@ -13,7 +13,6 @@
     <string name="placeholder_product_desc">Dress \nMaterial : Linen \nMaterial Composition : 100% Linen \nPlease bear in mind that the photo may be slightly different from the actual item in terms of color due to lighting conditions or the display used to view:</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_shipping">ShippingActivity</string>

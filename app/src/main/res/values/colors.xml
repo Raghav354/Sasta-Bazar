@@ -11,5 +11,6 @@
     <color name="dress_green">#6EB85F</color>
     <color name="highlightedtextcolor">#8C8585</color>
     <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="Dark_gray">#8c8585</color>
 
 </resources>

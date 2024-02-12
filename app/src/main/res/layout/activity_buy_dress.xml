@@ -8,32 +8,56 @@
     android:layout_height="match_parent">
 
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.BuyDressActivity">
 
     <!-- Product Image Section -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Product Image -->
+
         <ImageView
             android:id="@+id/product_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
+            android:src="@drawable/image_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/image_bg" />
+            app:layout_constraintVertical_bias="0.0" />
 
-        <!-- Bottom Image Overlay -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/arrow_back"
+                app:title="Home"
+                android:alpha="2"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
             android:id="@+id/dressname"
@@ -41,8 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="One Shoulder Linen Dress"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_22ssp"
+            android:textColor="@color/black"
+            android:background="#80FFFFFF"
+            android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ratingBar"
             app:layout_constraintStart_toStartOf="parent" />
@@ -63,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:progressTint="@color/dress_yellow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -75,6 +101,7 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_14sdp"
             android:text="Rs."
+            android:background="#80FFFFFF"
             android:textColor="@color/black"
             android:textSize="@dimen/_20ssp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -89,6 +116,7 @@
             android:text="5740"
             android:textSize="@dimen/_28ssp"
             android:textStyle="bold"
+            android:background="#80FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/rs"
             app:layout_constraintLeft_toRightOf="@+id/rs"
             app:layout_constraintTop_toTopOf="@+id/rs"
@@ -104,21 +132,16 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/icon_heart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <!-- Buttons Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1" >
 
         <TextView
             android:id="@+id/sizetext"
@@ -131,6 +154,17 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/seeMore_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:text="See more"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/sizetext"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sizetext" />
 
         <LinearLayout
             android:id="@+id/sizeLayout"
@@ -179,17 +213,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/seeMore_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_30sdp"
-            android:text="See more"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/sizetext"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/sizetext" />
-
         <LinearLayout
             android:id="@+id/incrementLayout"
             android:layout_width="wrap_content"
@@ -203,16 +226,16 @@
             app:layout_constraintTop_toBottomOf="@id/seeMore_details">
 
 
-        <ImageButton
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:padding="4dp"
-            android:src="@drawable/plus"
-           />
+            <ImageButton
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="4dp"
+                android:src="@drawable/plus"
+                />
 
             <TextView
                 android:id="@+id/number"
@@ -235,8 +258,6 @@
                 />
 
         </LinearLayout>
-
-
 
         <TextView
             android:id="@+id/color"
@@ -334,37 +355,38 @@
             android:textColor="@color/highlightedtextcolor"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:inputType="textMultiLine"
             app:layout_constraintStart_toStartOf="@id/dressmaterial"
             app:layout_constraintTop_toBottomOf="@+id/dressmaterial" />
 
-
-
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buynow"
-            style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_14sdp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:backgroundTint="#F68B8B"
+            android:background="@drawable/rounded_button_bg"
             android:text="Buy Now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/productDesc"
             app:layout_constraintTop_toBottomOf="@id/productDesc" />
 
         <!-- Add to Cart Button -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addtocart"
-            style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@color/darker_gray"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:textAllCaps="false"
+            android:background="@drawable/add_to_cart_bg"
+            android:textColor="@color/white"
             android:text="Add to Cart"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -373,6 +395,10 @@
             app:layout_constraintTop_toBottomOf="@+id/buynow" />
 
 
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

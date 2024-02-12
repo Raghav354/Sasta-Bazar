@@ -23,12 +23,6 @@ class DashBoardFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductModel>
     private lateinit  var adapter: ProductAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,6 +67,9 @@ class DashBoardFragment : Fragment() {
         }
         binding.bottoms.setOnClickListener{
             startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Bottoms"))
+        }
+        binding.saree.setOnClickListener{
+            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Saree"))
         }
         binding.seeMore.setOnClickListener {
             startActivity(Intent(requireContext(), ProjectCatActivity::class.java))

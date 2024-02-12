@@ -32,6 +32,8 @@ class CartAdapter(var context:Context , var productList:ArrayList<ProductModel>)
         holder.binding.dressname.text = productList.get(position).name
         holder.binding.coupancode.text = productList.get(position).id
         holder.binding.price.text = "Rs. "+productList.get(position).price.toString()
+//        holder.binding.color.text = productList.get(position).color.toString()
+//        holder.binding.size.text = productList.get(position).size.toString()
 
         holder.itemView.setOnClickListener {
             context.startActivity(

@@ -6,17 +6,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavArgument
+import androidx.navigation.findNavController
 import coil.load
+import com.example.sastabazar.CartFragment
 import com.example.sastabazar.R
 import com.example.sastabazar.adaptors.CartAdapter
 import com.example.sastabazar.databinding.ActivityBuyDressBinding
 import com.example.sastabazar.model.ProductModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ServerValue.increment
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 
 class BuyDressActivity : AppCompatActivity() {
-    private var selectedDressQuantity=1
+    private var selectedDressQuantity = 1
     private var selectedDressSize ="UK 8"
     private var selectedDressColor = R.drawable.pink_color_item
 //    private var flashSaleDressItem : ProductModel = ProductModel()
@@ -48,6 +55,14 @@ class BuyDressActivity : AppCompatActivity() {
 
         }
 
+//        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+//        navController.navigate(R.id.navigation_cart)
+
+
+
+
+
+
     }
 
     private fun handleBtnClick() {
@@ -57,18 +72,73 @@ class BuyDressActivity : AppCompatActivity() {
             buynow.setOnClickListener { buyThisDress() }
             addtocart.setOnClickListener { addToCart() }
             addtowishlist.setOnClickListener{addToWishList()}
+            toolbar.setOnClickListener{backToHome()}
 
         }
     }
 
+    private fun backToHome() {
+        startActivity(Intent(this@BuyDressActivity , HomeActivity::class.java))
+        finish()
+    }
+
     private fun addToWishList() {
-        Toast.makeText(this@BuyDressActivity,"Successfully added to wishlist.",Toast.LENGTH_SHORT).show()
+        binding.addtowishlist.setOnClickListener {
+            val firebaseFirestore = Firebase.firestore
+            val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+            // Create/update wishlist item document
+            firebaseFirestore.collection("users")
+                .document(userId)
+                .collection("wishlist")
+                .document(productModel.id!!) // Use product ID as document ID
+                .set(hashMapOf(
+                    "id" to productModel.id,
+                    "name" to productModel.name,
+                    "imageUrl" to productModel.imageUrl,
+                    "price" to productModel.price,
+                    "size" to selectedDressSize, // Optional if you store size
+                ), SetOptions.merge())
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Item added to wishlist!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     private fun addToCart() {
-        Toast.makeText(this@BuyDressActivity,"Successfully added to cart.",Toast.LENGTH_SHORT).show()
-    }
+        binding.addtocart.setOnClickListener {
+            val firebaseFirestore = Firebase.firestore
+            val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
+            // Create/update cart item document
+            firebaseFirestore.collection("users")
+                .document(userId)
+                .collection("cart")
+                .document(productModel.id!!) // Use product ID as document ID
+                .set(hashMapOf(
+                    "id" to productModel.id,
+                    "name" to productModel.name,
+                    "imageUrl" to productModel.imageUrl,
+                    "price" to productModel.price,
+                    "size" to selectedDressSize, // Optional if you store size
+//                    "quantity" to FieldValue.increment(selectedDressQuantity)
+                ), SetOptions.merge())
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Item added to cart!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+//        // Replace "navigation_cart" with your actual destination ID
+//        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+//        navController.navigate(R.id.navigation_cart, bundle)
+
+    }
     private fun buyThisDress() {
         val intent = Intent(this@BuyDressActivity , ShippingActivity::class.java)
         intent.putExtra("DressName" , binding.dressname.text.toString())

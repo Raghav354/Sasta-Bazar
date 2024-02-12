@@ -7,6 +7,7 @@ data class ProductModel(
     var disp: String?=null,
     var color:String?=null,
     var imageUrl: String?=null,
-    var productCode:String?=null
+    var productCode:String?=null,
+    var size:String?=null
 )
 
