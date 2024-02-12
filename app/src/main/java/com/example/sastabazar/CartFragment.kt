@@ -65,6 +65,13 @@ class CartFragment : Fragment() {
             }
     }
 
+
+
+
+
+
+
+
 //    private fun setRecyclerView() {
 //
 //        arguments?.let { bundle ->
@@ -91,4 +98,6 @@ class CartFragment : Fragment() {
 //        recyclerView.adapter = productItemAdapter
 //        }
 //    }
+
+
 }
