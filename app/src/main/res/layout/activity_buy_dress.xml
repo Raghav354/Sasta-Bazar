@@ -232,8 +232,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@drawable/rectangle_bg_text"
                 android:padding="4dp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:src="@drawable/plus"
                 />
 
@@ -244,7 +245,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_bg_text"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="6dp"
                 android:text="1"  />
 
             <ImageButton
@@ -252,8 +253,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@drawable/rectangle_bg_text"
                 android:padding="4dp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:src="@drawable/minus"
                 />
 

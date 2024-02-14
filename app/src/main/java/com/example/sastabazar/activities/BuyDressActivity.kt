@@ -2,7 +2,9 @@ package com.example.sastabazar.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -110,36 +112,83 @@ class BuyDressActivity : AppCompatActivity() {
     }
 
     private fun addToCart() {
-        binding.addtocart.setOnClickListener {
-            val firebaseFirestore = Firebase.firestore
-            val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val firebaseFirestore = Firebase.firestore
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
-            // Create/update cart item document
-            firebaseFirestore.collection("users")
-                .document(userId)
-                .collection("cart")
-                .document(productModel.id!!) // Use product ID as document ID
-                .set(hashMapOf(
-                    "id" to productModel.id,
-                    "name" to productModel.name,
-                    "imageUrl" to productModel.imageUrl,
-                    "price" to productModel.price,
-                    "size" to selectedDressSize, // Optional if you store size
-//                    "quantity" to FieldValue.increment(selectedDressQuantity)
-                ), SetOptions.merge())
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Item added to cart!", Toast.LENGTH_SHORT).show()
+        // Check if the product is already in the cart
+        firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(productModel.id!!) // Use product ID as document ID
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    // Product already exists, remove it from cart
+                    removeFromCart()
+                    updateButtonState(false)
+                } else {
+                    // Create the cart item document
+                    addProductToCart() // Call creation function and update button
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-        }
-
-//        // Replace "navigation_cart" with your actual destination ID
-//        val navController = findNavController(R.id.nav_host_fragment_activity_home)
-//        navController.navigate(R.id.navigation_cart, bundle)
-
+            }
+            .addOnFailureListener { e ->
+                // Handle errors during existence check
+                Toast.makeText(this, "Error checking cart: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
+
+    private fun removeFromCart() {
+        val firebaseFirestore = Firebase.firestore
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+        // Remove the product document from the cart
+         firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(productModel.id!!) // Use product ID as document ID
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Product removed from cart!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                // Handle errors during removal
+                Toast.makeText(this, "Error removing product: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+             // Wait for asynchronous operation to complete
+    }
+
+
+    private fun addProductToCart() {
+        val firebaseFirestore = Firebase.firestore
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+        firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(productModel.id!!) // Use product ID as document ID
+            .set(hashMapOf(
+                "id" to productModel.id,
+                "name" to productModel.name,
+                "imageUrl" to productModel.imageUrl,
+                "price" to productModel.price,
+                "size" to selectedDressSize, // Optional if you store size
+//                            "quantity" to FieldValue.increment(selectedDressQuantity)
+                // Your cart item data here
+            ), SetOptions.merge())
+            .addOnSuccessListener {
+                Toast.makeText(this, "Item added to cart!", Toast.LENGTH_SHORT).show()
+                updateButtonState(true) // Set button state based on addition
+            }
+            .addOnFailureListener { e ->
+                // Handle errors during cart item creation
+                Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun updateButtonState(isInCart: Boolean) {
+        binding.addtocart.setBackgroundColor(if (isInCart) Color.RED else R.drawable.add_to_cart_bg)
+    }
+
     private fun buyThisDress() {
         val intent = Intent(this@BuyDressActivity , ShippingActivity::class.java)
         intent.putExtra("DressName" , binding.dressname.text.toString())
@@ -147,6 +196,7 @@ class BuyDressActivity : AppCompatActivity() {
         intent.putExtra("DressImage" , binding.productImage.toString())
         startActivity(intent)
     }
+
 
     private fun increaseNumber() {
         binding.number.text.toString().toIntOrNull()?.let {number->
