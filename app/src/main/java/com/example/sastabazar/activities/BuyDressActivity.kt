@@ -1,5 +1,6 @@
 package com.example.sastabazar.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -149,19 +150,29 @@ class BuyDressActivity : AppCompatActivity() {
 
     private fun increaseNumber() {
         binding.number.text.toString().toIntOrNull()?.let {number->
-            if(number in 2 .. 10)
+            if(number in 1 .. 9)
             {
                 binding.number.text=(number+1).toString()
+                if(number == 9)
+                {
+                    Toast.makeText(this , "You can order maximum 10 at a time.",Toast.LENGTH_SHORT).show()
+                }
             }
             selectedDressQuantity = number + 1
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun decreaseNumber() {
         binding.number.text.toString().toIntOrNull()?.let {number->
-            if(number in 2 .. 10)
+            if(number in 1 .. 10)
             {
-                binding.number.text=(number-1).toString()
+                if(binding.number.text.toString() == "1")
+                {
+                    Toast.makeText(this , "You can order minimum 1 at a time.",Toast.LENGTH_SHORT).show()
+                }
+                else
+                binding.number.text = (number-1).toString()
             }
             selectedDressQuantity = number - 1
 

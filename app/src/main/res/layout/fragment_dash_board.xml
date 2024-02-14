@@ -63,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:text="See More"
                 android:textColor="@color/app_theme"
                 android:textSize="@dimen/_14ssp"
@@ -194,7 +195,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Jumpsuit"
+                        android:text="Saree"
                         />
 
                 </LinearLayout>
@@ -231,7 +232,7 @@
                 android:id="@+id/seeMore2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:padding="@dimen/_1sdp"
                 android:text="See More"
                 android:textColor="@color/app_theme"

@@ -1,8 +1,10 @@
 package com.example.sastabazar.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sastabazar.adaptors.CategoryAdapter
 import com.example.sastabazar.databinding.ActivityProjectCatBinding
@@ -57,6 +59,11 @@ class ProjectCatActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
+        }
+
+        binding.toolbar.setOnClickListener {
+            startActivity(Intent(this , HomeActivity::class.java))
+            finish()
         }
     }
 }

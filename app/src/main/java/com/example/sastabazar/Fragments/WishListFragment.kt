@@ -1,5 +1,6 @@
 package com.example.sastabazar.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import com.example.sastabazar.R
+import com.example.sastabazar.activities.HomeActivity
 import com.example.sastabazar.adaptors.WishListAdapter
 import com.example.sastabazar.databinding.FragmentWishListBinding
 import com.example.sastabazar.model.ProductModel
@@ -60,6 +62,10 @@ class WishListFragment : Fragment() {
                 Log.w("CartFragment", "Error reading cart items: ${e.message}")
                 Toast.makeText(requireContext(), "Error loading cart!", Toast.LENGTH_SHORT).show()
             }
+
+        binding.toolbar.setOnClickListener {
+            startActivity(Intent(requireContext() , HomeActivity::class.java))
+        }
     }
 
 
