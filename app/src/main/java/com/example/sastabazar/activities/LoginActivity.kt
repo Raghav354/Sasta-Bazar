@@ -19,49 +19,71 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //If new user is here
-        binding.signUpText.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, SignUpLoginActivity::class.java))
-        }
+        textWatcherFun()
+        handleBtnClick()
 
-        //User is already exist
-        binding.login.setOnClickListener {
-            val email = binding.email.text.toString()
-            val pass = binding.password.text.toString()
 
-            if (email.isNotEmpty() && pass.isNotEmpty()) {
-                Firebase.auth.signInWithEmailAndPassword(
-                    email, pass
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(this@LoginActivity, "login", Toast.LENGTH_SHORT)
-                            .show()
-                        showLoginSuccesDialog()
-                    } else {
-                        Toast.makeText(this, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-            else {
-                Toast.makeText(this , "Empty fields are not allowed!!" , Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        binding.facebook.setOnClickListener{
+        binding.facebook.setOnClickListener {
             //sign in by facebook account
         }
-        binding.google.setOnClickListener{
+        binding.google.setOnClickListener {
             //sign in by google account
 
         }
 
+
+    }
+
+    private fun handleBtnClick() {
+        binding.apply {
+
+            //User is already exist
+            login.setOnClickListener { userLogin() }
+            //new user
+            signUpText.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, SignUpLoginActivity::class.java))
+            }
+        }
+    }
+
+    private fun userLogin() {
+        val email = binding.email.text.toString()
+        val pass = binding.password.text.toString()
+
+        if (email.isNotEmpty() && pass.isNotEmpty()) {
+            Firebase.auth.signInWithEmailAndPassword(
+                email, pass
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val verification = Firebase.auth.currentUser?.isEmailVerified
+                    if (verification == true) {
+                        Toast.makeText(this@LoginActivity, "login", Toast.LENGTH_SHORT)
+                            .show()
+                        showLoginSuccesDialog()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Please verify your email by registering!!!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(this, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Empty fields are not allowed!!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun textWatcherFun() {
         //textWatcher on login button
         binding.email.addTextChangedListener(textWatcher)
         binding.password.addTextChangedListener(textWatcher)
     }
 
     //only enables the button when all the required field are filled.
-    private val textWatcher = object : TextWatcher{
+    private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
@@ -75,11 +97,6 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-
-    }
-
-    override fun onStart() {
-        super.onStart()
 
     }
     private fun showLoginSuccesDialog() {

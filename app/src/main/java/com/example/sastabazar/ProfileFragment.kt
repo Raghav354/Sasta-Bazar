@@ -115,6 +115,7 @@ class ProfileFragment : Fragment() {
 
         dialoglogoutvbtn.setOnClickListener {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
+//            finish()
         }
         dialogcancelbtn.setOnClickListener {
             makeViewVisible()
