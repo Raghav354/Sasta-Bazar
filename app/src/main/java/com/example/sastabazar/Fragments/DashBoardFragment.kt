@@ -1,4 +1,4 @@
-package com.example.sastabazar
+package com.example.sastabazar.Fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.sastabazar.R
 import com.example.sastabazar.activities.ProjectCatActivity
 import com.example.sastabazar.adaptors.ProductAdapter
 import com.example.sastabazar.databinding.FragmentDashBoardBinding

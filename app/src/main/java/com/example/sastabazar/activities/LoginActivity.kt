@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sastabazar.databinding.ActivityLoginBinding
 import com.example.sastabazar.databinding.LoginsuccessdialogboxBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -23,28 +24,49 @@ class LoginActivity : AppCompatActivity() {
         handleBtnClick()
 
 
-        binding.facebook.setOnClickListener {
-            //sign in by facebook account
-        }
-        binding.google.setOnClickListener {
-            //sign in by google account
-
-        }
-
-
     }
 
     private fun handleBtnClick() {
         binding.apply {
 
-            //User is already exist
             login.setOnClickListener { userLogin() }
-            //new user
             signUpText.setOnClickListener {
                 startActivity(Intent(this@LoginActivity, SignUpLoginActivity::class.java))
             }
+            forgotPass.setOnClickListener { handleForgotPassword(binding.email.text.toString()) }
+            facebook.setOnClickListener {
+                //sign in by facebook account
+            }
+            google.setOnClickListener {
+                //sign in by google account
+            }
         }
     }
+
+    private fun handleForgotPassword(email: String) {
+        if (binding.email.text.isNotEmpty()) {
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(
+                            this,
+                            "Password reset email sent to $email.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Error sending password reset email: ${task.exception?.localizedMessage}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+        } else {
+            Toast.makeText(this, "Please provide the mail...", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
 
     private fun userLogin() {
         val email = binding.email.text.toString()

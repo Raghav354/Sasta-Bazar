@@ -1,4 +1,4 @@
-package com.example.sastabazar
+package com.example.sastabazar.Fragments
 
 import android.app.Activity
 import android.app.Dialog
@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import com.example.sastabazar.R
 import com.example.sastabazar.activities.LoginActivity
 import com.example.sastabazar.databinding.FragmentProfileBinding
 import com.example.sastabazar.databinding.LogoutdialogboxBinding
@@ -106,16 +107,16 @@ class ProfileFragment : Fragment() {
         val bind: LogoutdialogboxBinding = LogoutdialogboxBinding.inflate(layoutInflater)
         logoutdialog.setContentView(bind.root)
 
-        val dialoglogoutvbtn = bind.logout
+        val dialoglogoutbtn = bind.logout
         val dialogcancelbtn = bind.cancelbtn
         val dialogprofilepic = bind.profilepic
         if (profileImageUri!=null)
             dialogprofilepic.setImageURI(profileImageUri)
 
 
-        dialoglogoutvbtn.setOnClickListener {
+        dialoglogoutbtn.setOnClickListener {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
-//            finish()
+//            finish() -> Problem in logged out
         }
         dialogcancelbtn.setOnClickListener {
             makeViewVisible()

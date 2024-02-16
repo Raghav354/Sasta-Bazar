@@ -6,12 +6,12 @@
     app:startDestination="@+id/navigation_dashboard">
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.example.sastabazar.CartFragment"
+        android:name="com.example.sastabazar.Fragments.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/navigation_user"
-        android:name="com.example.sastabazar.ProfileFragment"
+        android:name="com.example.sastabazar.Fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_wish_list" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.sastabazar.DashBoardFragment"
+        android:name="com.example.sastabazar.Fragments.DashBoardFragment"
         android:label="fragment_dash_board"
         tools:layout="@layout/fragment_dash_board" />
 </navigation>
