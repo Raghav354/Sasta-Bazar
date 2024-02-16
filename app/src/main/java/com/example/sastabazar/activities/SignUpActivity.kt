@@ -16,7 +16,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class SignUpLoginActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivitySignUpLoginBinding.inflate(layoutInflater)
     }
@@ -25,9 +25,8 @@ class SignUpLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-        btnHandle()
         textWatcherFun()
+        btnHandle()
 
     }
 
@@ -44,7 +43,7 @@ class SignUpLoginActivity : AppCompatActivity() {
             switchText.setOnClickListener {
                 startActivity(
                     Intent(
-                        this@SignUpLoginActivity,
+                        this@SignUpActivity,
                         LoginActivity::class.java
                     )
                 )
@@ -58,7 +57,7 @@ class SignUpLoginActivity : AppCompatActivity() {
         //To create the new User
         if (binding.pass.text.toString() != binding.comPass.text.toString()) {
             Toast.makeText(
-                this@SignUpLoginActivity,
+                this@SignUpActivity,
                 "Password and Confirm password must be same.",
                 Toast.LENGTH_SHORT
             ).show()
@@ -89,7 +88,7 @@ class SignUpLoginActivity : AppCompatActivity() {
                 }
                 .addOnFailureListener {
                     Toast.makeText(
-                        this@SignUpLoginActivity,
+                        this@SignUpActivity,
                         it.localizedMessage,
                         Toast.LENGTH_SHORT
                     ).show()
@@ -102,7 +101,7 @@ class SignUpLoginActivity : AppCompatActivity() {
 
     private fun saveData() {
         //User model to store the value of user
-        var userModel = UserModel(
+        val userModel = UserModel(
             binding.firstName.text.toString(),
             binding.lastName.text.toString(),
             binding.email.text.toString(),
@@ -118,14 +117,14 @@ class SignUpLoginActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 //If user creation failed.
-                Toast.makeText(this@SignUpLoginActivity, it.localizedMessage, Toast.LENGTH_SHORT)
+                Toast.makeText(this@SignUpActivity, it.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
             }
     }
 
     private fun showRegistrationDialog() {
 
-        val regsuccessdialog = Dialog(this@SignUpLoginActivity)
+        val regsuccessdialog = Dialog(this@SignUpActivity)
         val bind: LoginsuccessdialogboxBinding =
             LoginsuccessdialogboxBinding.inflate(layoutInflater)
         regsuccessdialog.setContentView(bind.root)
@@ -137,7 +136,7 @@ class SignUpLoginActivity : AppCompatActivity() {
 
 
         donebtn.setOnClickListener {
-            startActivity(Intent(this@SignUpLoginActivity, LoginActivity::class.java))
+            startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
             finish()
         }
         regsuccessdialog.show()

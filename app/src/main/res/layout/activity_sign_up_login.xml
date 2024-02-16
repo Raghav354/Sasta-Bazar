@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.SignUpLoginActivity">
+    tools:context=".activities.SignUpActivity">
 
     <TextView
         android:id="@+id/product_code"
@@ -41,7 +41,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_140sdp"
         android:orientation="vertical"
-        tools:context=".activities.SignUpLoginActivity">
+        tools:context=".activities.SignUpActivity">
 
 
         <EditText

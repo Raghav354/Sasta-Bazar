@@ -16,6 +16,8 @@ import com.example.sastabazar.R
 import com.example.sastabazar.activities.LoginActivity
 import com.example.sastabazar.databinding.FragmentProfileBinding
 import com.example.sastabazar.databinding.LogoutdialogboxBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -115,8 +117,12 @@ class ProfileFragment : Fragment() {
 
 
         dialoglogoutbtn.setOnClickListener {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            GoogleSignIn.getClient(requireContext(), gso).signOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
-//            finish() -> Problem in logged out
         }
         dialogcancelbtn.setOnClickListener {
             makeViewVisible()

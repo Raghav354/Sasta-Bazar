@@ -36,5 +36,6 @@
     </string>
     <string name="login">Login</string>
     <string name="RedirectText">After clicking “Pay now”, you will be redirected to Razor Pay Payement gateway to complete your purchase securely.</string>
+    <string name="default_web_client_id">1056874627563-4lvg18ndsbf6jf9duupfo44urcgi4dl3.apps.googleusercontent.com</string>
 
 </resources>

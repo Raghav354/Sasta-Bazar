@@ -1,20 +1,29 @@
 package com.example.sastabazar.activities
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sastabazar.R
 import com.example.sastabazar.databinding.ActivityLoginBinding
 import com.example.sastabazar.databinding.LoginsuccessdialogboxBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var googleSignClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -23,6 +32,11 @@ class LoginActivity : AppCompatActivity() {
         textWatcherFun()
         handleBtnClick()
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignClient = GoogleSignIn.getClient(this, gso)
 
     }
 
@@ -31,17 +45,43 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener { userLogin() }
             signUpText.setOnClickListener {
-                startActivity(Intent(this@LoginActivity, SignUpLoginActivity::class.java))
+                startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
             }
             forgotPass.setOnClickListener { handleForgotPassword(binding.email.text.toString()) }
             facebook.setOnClickListener {
                 //sign in by facebook account
             }
             google.setOnClickListener {
-                //sign in by google account
+                val signInClient = googleSignClient.signInIntent
+                launcher.launch(signInClient)
             }
         }
     }
+
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                if (task.isSuccessful) {
+                    val account: GoogleSignInAccount? = task.result
+                    val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+                    Firebase.auth.signInWithCredential(credential).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                            finish()
+                            Toast.makeText(this, "Logged in Successfully...", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show()
+
+            }
+        }
 
     private fun handleForgotPassword(email: String) {
         if (binding.email.text.isNotEmpty()) {

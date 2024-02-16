@@ -47,7 +47,7 @@
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".activities.SignUpLoginActivity"
+            android:name=".activities.SignUpActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
