@@ -68,12 +68,15 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
-    implementation ("com.intuit.sdp:sdp-android:1.1.0")
-    implementation ("com.intuit.ssp:ssp-android:1.1.0")
+    implementation("com.intuit.sdp:sdp-android:1.1.0")
+    implementation("com.intuit.ssp:ssp-android:1.1.0")
     implementation("io.coil-kt:coil:2.5.0")
-    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
     //spinner
     implementation("com.github.skydoves:powerspinner:1.2.7")
+
+    implementation("com.github.bumptech.glide:glide:4.13.2")
+
 
 }

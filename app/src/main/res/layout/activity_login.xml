@@ -72,7 +72,7 @@
         android:fontFamily="@font/highlighttextfont"
         android:padding="@dimen/_2sdp"
         android:textStyle="bold|italic"
-        android:text="Forgot Password"
+        android:text="@string/forgot_password"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.843"
@@ -129,19 +129,19 @@
         app:layout_constraintStart_toStartOf="@+id/materialDivider"
         app:layout_constraintTop_toTopOf="@+id/materialDivider" />
 
-    <Button
-        android:id="@+id/facebook"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="@dimen/_270sdp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_6sdp"
-        android:layout_marginTop="@dimen/_42sdp"
-        android:drawableLeft="@drawable/facebook"
-        android:text="Log in with Facebook"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_text"
-        app:strokeColor="#F68B8B" />
+    <!--    <Button-->
+    <!--        android:id="@+id/facebook"-->
+    <!--        style="@style/Widget.Material3.Button.OutlinedButton"-->
+    <!--        android:layout_width="@dimen/_270sdp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="@dimen/_6sdp"-->
+    <!--        android:layout_marginTop="@dimen/_42sdp"-->
+    <!--        android:drawableLeft="@drawable/facebook"-->
+    <!--        android:text="Log in with Facebook"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/signUp_text"-->
+    <!--        app:strokeColor="#F68B8B" />-->
 
     <Button
         android:id="@+id/google"
@@ -149,13 +149,15 @@
         android:layout_width="@dimen/_270sdp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8sdp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginBottom="@dimen/_135sdp"
+        android:padding="@dimen/_10sdp"
         android:drawableLeft="@drawable/google"
-        android:text="Log in with Google"
+        android:text="@string/log_in_with_google"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/facebook"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.07999998"
         app:strokeColor="#F68B8B" />
 

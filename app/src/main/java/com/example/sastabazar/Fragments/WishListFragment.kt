@@ -9,14 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
-import com.example.sastabazar.R
 import com.example.sastabazar.activities.HomeActivity
 import com.example.sastabazar.adaptors.WishListAdapter
 import com.example.sastabazar.databinding.FragmentWishListBinding
 import com.example.sastabazar.model.ProductModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.*
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 
@@ -52,7 +50,7 @@ class WishListFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    val product = document.toObject<ProductModel>()!!
+                    val product = document.toObject<ProductModel>()
                     product.id = document.id
                     wishlistitemList.add(product)
                 }

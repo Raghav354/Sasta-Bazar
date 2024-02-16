@@ -48,9 +48,6 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
             }
             forgotPass.setOnClickListener { handleForgotPassword(binding.email.text.toString()) }
-            facebook.setOnClickListener {
-                //sign in by facebook account
-            }
             google.setOnClickListener {
                 val signInClient = googleSignClient.signInIntent
                 launcher.launch(signInClient)
@@ -58,6 +55,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+    //launcher to show all the google account in your phone .
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 

@@ -152,15 +152,15 @@
                 app:layout_constraintTop_toTopOf="@+id/materialDivider" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/facebook"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
-            android:drawableLeft="@drawable/facebook"
-            android:text="Log in with Facebook"
-            app:strokeColor="#F68B8B" />
+        <!--        <Button-->
+        <!--            android:id="@+id/facebook"-->
+        <!--            style="@style/Widget.Material3.Button.OutlinedButton"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="@dimen/_8sdp"-->
+        <!--            android:drawableLeft="@drawable/facebook"-->
+        <!--            android:text="Log in with Facebook"-->
+        <!--            app:strokeColor="#F68B8B" />-->
 
         <Button
             android:id="@+id/google"
@@ -170,6 +170,8 @@
             android:layout_margin="@dimen/_8sdp"
             android:drawableLeft="@drawable/google"
             android:text="Log in with Google"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_14ssp"
             app:strokeColor="#F68B8B" />
 
 

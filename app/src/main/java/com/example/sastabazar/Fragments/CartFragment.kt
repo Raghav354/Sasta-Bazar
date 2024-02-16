@@ -53,7 +53,7 @@ class CartFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    val product = document.toObject<ProductModel>()!!
+                    val product = document.toObject<ProductModel>()
                     product.id = document.id
                     cartItemList.add(product)
                 }

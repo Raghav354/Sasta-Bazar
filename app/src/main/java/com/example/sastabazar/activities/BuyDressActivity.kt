@@ -164,8 +164,7 @@ class BuyDressActivity : AppCompatActivity() {
                 "name" to productModel.name,
                 "imageUrl" to productModel.imageUrl,
                 "price" to productModel.price,
-                "size" to selectedDressSize, // Optional if you store size
-//                            "quantity" to FieldValue.increment(selectedDressQuantity)
+                "size" to selectedDressSize,
                 // Your cart item data here
             ), SetOptions.merge())
             .addOnSuccessListener {

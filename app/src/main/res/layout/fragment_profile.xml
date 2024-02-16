@@ -1,155 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_140sdp"
-        android:layout_marginTop="@dimen/_minus30sdp"
-        android:src="@drawable/ellipse1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ellipse2"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_32sdp"
-        android:layout_marginTop="@dimen/_32sdp"
-        app:cardCornerRadius="@dimen/_100sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/profilepic"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_90sdp"
-            android:background="@color/white"
-            android:scaleType="fitXY"
-            android:src="@drawable/profilepic" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-    </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/first_name"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:hint="First Name"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/_10sdp"
-        android:inputType="text"
-        android:background="@drawable/bg_rounded_stroke"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_140sdp"
+                android:layout_marginTop="@dimen/_minus30sdp"
+                android:src="@drawable/ellipse1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/last_name"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:background="@drawable/bg_rounded_stroke"
-        android:gravity="center_vertical"
-        android:hint="Last Name"
-        android:inputType="text"
-        android:paddingLeft="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/first_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/first_name"
-        app:layout_constraintTop_toTopOf="@+id/first_name" />
 
-    <EditText
-        android:id="@+id/userEmail"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:hint="Email"
-        android:inputType="text"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/_10sdp"
-        android:background="@drawable/bg_rounded_stroke"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                app:cardCornerRadius="@dimen/_100sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/userPhoneNumber"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:hint="Phone Number"
-        android:inputType="number"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/_10sdp"
-        android:background="@drawable/bg_rounded_stroke"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+                <ImageView
+                    android:id="@+id/profilepic"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/profilepic" />
 
-    <EditText
-        android:id="@+id/userAddress"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/bg_rounded_stroke"
-        android:gravity="center_vertical"
-        android:hint="Address"
-        android:inputType="text"
-        android:paddingLeft="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPhoneNumber" />
+            </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/logOut"
-        android:layout_width="@dimen/_290sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="Log Out"
-        android:textSize="@dimen/_14ssp"
-        android:backgroundTint="@color/app_theme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAddress" />
+            <EditText
+                android:id="@+id/first_name"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:gravity="center_vertical"
+                android:hint="First Name"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/editProfile"
-        android:layout_width="@dimen/_290sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="Edit Profile"
-        android:textSize="@dimen/_14ssp"
-        android:background = "@drawable/bg_rounded_stroke"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logOut" />
+            <EditText
+                android:id="@+id/last_name"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:gravity="center_vertical"
+                android:hint="Last Name"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/first_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/first_name"
+                app:layout_constraintTop_toTopOf="@+id/first_name" />
 
-    <include
-        layout="@layout/greybackground"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+            <EditText
+                android:id="@+id/userEmail"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:gravity="center_vertical"
+                android:hint="Email"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
+            <EditText
+                android:id="@+id/userPhoneNumber"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:gravity="center_vertical"
+                android:hint="Phone Number"
+                android:inputType="number"
+                android:paddingLeft="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+
+            <EditText
+                android:id="@+id/userAddress"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:gravity="center_vertical"
+                android:hint="Address"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userPhoneNumber" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logOut"
+                android:layout_width="@dimen/_290sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:backgroundTint="@color/app_theme"
+                android:text="Log Out"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userAddress" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editProfile"
+                android:layout_width="@dimen/_290sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:text="Edit Profile"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logOut" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/saveProfile"
+                android:layout_width="@dimen/_290sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:background="@drawable/bg_rounded_stroke"
+                android:text="Save Profile"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/editProfile"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/editProfile"
+                app:layout_constraintTop_toBottomOf="@+id/editProfile" />
+
+            <include
+                layout="@layout/greybackground"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
