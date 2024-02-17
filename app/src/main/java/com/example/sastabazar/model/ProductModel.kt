@@ -1,5 +1,7 @@
 package com.example.sastabazar.model
 
+import java.io.Serializable
+
 data class ProductModel(
     var id:String? = null,
     var name: String?=null,
@@ -9,5 +11,5 @@ data class ProductModel(
     var imageUrl: String?=null,
     var productCode:String?=null,
     var size:String?=null
-)
+): Serializable
 

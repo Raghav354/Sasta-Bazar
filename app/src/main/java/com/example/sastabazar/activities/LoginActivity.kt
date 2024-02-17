@@ -67,10 +67,10 @@ class LoginActivity : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                     Firebase.auth.signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                            finish()
-                            Toast.makeText(this, "Logged in Successfully...", Toast.LENGTH_SHORT)
-                                .show()
+                            showLoginSuccesDialog()
+//                            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+//                            finish()
+
                         } else {
                             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
                         }
@@ -173,6 +173,8 @@ class LoginActivity : AppCompatActivity() {
         donebtn.setOnClickListener {
             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             finish()
+            Toast.makeText(this, "Logged in Successfully...", Toast.LENGTH_SHORT)
+                                .show()
         }
 
         loginsuccessdialog.show()

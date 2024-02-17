@@ -57,7 +57,14 @@ class CartFragment : Fragment() {
                     product.id = document.id
                     cartItemList.add(product)
                 }
-                cartAdapter.notifyDataSetChanged() // Update UI with cart items
+                cartAdapter.notifyDataSetChanged()
+
+                //total price of the products
+                var totalPrice = 0.0
+                for (product in cartItemList) {
+                    totalPrice += product.price ?: 0.0
+                }
+                binding.price.text = totalPrice.toString()
             }
             .addOnFailureListener { e ->
                 Log.w("CartFragment", "Error reading cart items: ${e.message}")

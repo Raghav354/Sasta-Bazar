@@ -1,6 +1,7 @@
 package com.example.sastabazar.activities
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -9,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +20,7 @@ import com.example.sastabazar.R
 import com.example.sastabazar.databinding.ActivityBuyDressBinding
 import com.example.sastabazar.model.ProductModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
@@ -30,6 +33,8 @@ class BuyDressActivity : AppCompatActivity() {
     private var selectedDressColor = R.drawable.pink_color_item
 //    private var flashSaleDressItem : ProductModel = ProductModel()
     private lateinit var binding: ActivityBuyDressBinding
+    private var firebaseFirestore = Firebase.firestore
+    private var userId = FirebaseAuth.getInstance().currentUser!!.uid
 
     var productModel = ProductModel()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,19 +48,16 @@ class BuyDressActivity : AppCompatActivity() {
         handleBtnClick()
         handleSizeSelection()
         handleColorSelection()
-
-
-        var productId = intent.getStringExtra("PRODUCT_ID")
-        Firebase.firestore.collection("Products").document(productId!!).get().addOnSuccessListener {
-
-            productModel = it.toObject<ProductModel>()!!
-            productModel.id = it.id
-            binding.productImage.load(productModel.imageUrl)
-            binding.dressname.text = productModel.name
-            binding.productDesc.text = productModel.disp
-            binding.discountprice.text = productModel.price.toString()
-
+        val productId = intent.getStringExtra("PRODUCT_ID")
+        productId?.let {
+            getProductDetails(it)
+            checkWishlistStatus(it)
         }
+
+        binding.addtowishlist.setOnClickListener {
+            productId?.let { toggleWishlistStatus(it) }
+        }
+
 
 //        val navController = findNavController(R.id.nav_host_fragment_activity_home)
 //        navController.navigate(R.id.navigation_cart)
@@ -67,13 +69,31 @@ class BuyDressActivity : AppCompatActivity() {
 
     }
 
+    private fun getProductDetails(productId: String) {
+        firebaseFirestore.collection("Products").document(productId).get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    productModel = documentSnapshot.toObject<ProductModel>()!!
+                    productModel.id = documentSnapshot.id
+
+                    // Load product details to UI
+                    binding.productImage.load(productModel.imageUrl)
+                    binding.dressname.text = productModel.name
+                    binding.productDesc.text = productModel.disp
+                    binding.discountprice.text = productModel.price.toString()
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error getting product details: $e")
+            }
+    }
+
     private fun handleBtnClick() {
         binding.apply {
             add.setOnClickListener{increaseNumber()}
             subtract.setOnClickListener{decreaseNumber()}
             buynow.setOnClickListener { buyThisDress() }
             addtocart.setOnClickListener { addToCart() }
-            addtowishlist.setOnClickListener{addToWishList()}
             toolbar.setOnClickListener{backToHome()}
 
         }
@@ -84,41 +104,85 @@ class BuyDressActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun addToWishList() {
-        binding.addtowishlist.setOnClickListener {
-            val firebaseFirestore = Firebase.firestore
-            val userId = FirebaseAuth.getInstance().currentUser!!.uid
+    private fun addToWishlist(docRef: DocumentReference) {
+        docRef.set(
+            hashMapOf(
+                "id" to productModel.id,
+                "name" to productModel.name,
+                "imageUrl" to productModel.imageUrl,
+                "price" to productModel.price,
+                "size" to selectedDressSize,
+                // Add other product details as needed
+            ), SetOptions.merge()
+        )
+            .addOnSuccessListener {
+                Toast.makeText(this, "Item added to wishlist!", Toast.LENGTH_SHORT).show()
+                binding.addtowishlist.setImageResource(R.drawable.icon_heart_filled)
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Failed to add item to wishlist: $e")
+                Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
 
-            // Create/update wishlist item document
-            firebaseFirestore.collection("users")
-                .document(userId)
-                .collection("wishlist")
-                .document(productModel.id!!) // Use product ID as document ID
-                .set(hashMapOf(
-                    "id" to productModel.id,
-                    "name" to productModel.name,
-                    "imageUrl" to productModel.imageUrl,
-                    "price" to productModel.price,
-                    "size" to selectedDressSize, // Optional if you store size
-                ), SetOptions.merge())
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Item added to wishlist!", Toast.LENGTH_SHORT).show()
+    private fun checkWishlistStatus(productId: String) {
+        firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("wishlist")
+            .document(productId)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    binding.addtowishlist.setImageResource(R.drawable.icon_heart_filled)
+                } else {
+                    binding.addtowishlist.setImageResource(R.drawable.icon_heart)
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error checking wishlist status: $e")
+            }
+    }
+
+    private fun removeFromWishlist(docRef: DocumentReference) {
+        docRef.delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Item removed from wishlist!", Toast.LENGTH_SHORT).show()
+                binding.addtowishlist.setImageResource(R.drawable.icon_heart)
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Failed to remove item from wishlist: $e")
+                Toast.makeText(this, "Error removing item: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun toggleWishlistStatus(productId: String) {
+        val docRef = firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("wishlist")
+            .document(productId)
+
+        docRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    removeFromWishlist(docRef)
+                } else {
+                    addToWishlist(docRef)
                 }
-        }
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error toggling wishlist status: $e")
+            }
     }
 
     private fun addToCart() {
-        val firebaseFirestore = Firebase.firestore
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+         firebaseFirestore = Firebase.firestore
+         userId = FirebaseAuth.getInstance().currentUser!!.uid
 
         // Check if the product is already in the cart
         firebaseFirestore.collection("users")
             .document(userId)
             .collection("cart")
-            .document(productModel.id!!) // Use product ID as document ID
+            .document(productModel.id!!)
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -126,7 +190,6 @@ class BuyDressActivity : AppCompatActivity() {
                     removeFromCart()
                     updateButtonState(false)
                 } else {
-                    // Create the cart item document
                     addProductToCart() // Call creation function and update button
                 }
             }

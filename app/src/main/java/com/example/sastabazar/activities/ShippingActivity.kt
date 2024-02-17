@@ -36,6 +36,8 @@ class ShippingActivity : AppCompatActivity() {
     private lateinit var state: String
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -51,11 +53,14 @@ class ShippingActivity : AppCompatActivity() {
         productInformation()
 
 
+
 //        val navController = findNavController(R.id.nav_host_fragment_content_shipping)
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
+
+
 
     private fun handleBtnClick() {
         binding.apply {

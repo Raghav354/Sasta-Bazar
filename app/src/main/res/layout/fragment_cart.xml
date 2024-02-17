@@ -87,17 +87,18 @@
         app:layout_constraintEnd_toEndOf="@id/contentDesp"
         />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_2sdp"
-            android:layout_marginRight="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            tools:listitem="@layout/rv_item_cart"
-            app:layout_constraintTop_toBottomOf="@id/divider1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_370sdp"
+        android:layout_marginLeft="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_2sdp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1" />
 
     <View
         android:id="@+id/divider2"
@@ -152,7 +153,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/addToCartBtn"
+        android:id="@+id/checkout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.Button"

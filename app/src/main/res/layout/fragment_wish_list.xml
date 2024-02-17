@@ -76,26 +76,28 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWishList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_370sdp"
         android:layout_marginLeft="@dimen/_2sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_2sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/divider1"
+        app:layout_constraintStart_toStartOf="@id/divider1"
         app:layout_constraintTop_toBottomOf="@id/divider1"
-        tools:listitem="@layout/rv_item_wishlist" />
+        app:layout_constraintVertical_bias="0.060000002" />
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginRight="@dimen/_8sdp"
-        android:background="@color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@id/rvWishList"
-        app:layout_constraintStart_toStartOf="@id/rvWishList"
-        app:layout_constraintTop_toBottomOf="@id/rvWishList" />
+<!--    <View-->
+<!--        android:id="@+id/divider2"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:layout_marginLeft="@dimen/_8sdp"-->
+<!--        android:layout_marginTop="@dimen/_16sdp"-->
+<!--        android:layout_marginRight="@dimen/_8sdp"-->
+<!--        android:background="@color/darker_gray"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/rvWishList"-->
+<!--        app:layout_constraintStart_toStartOf="@id/rvWishList"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/rvWishList" />-->
 
     <ImageView
         android:id="@+id/imageView7"
