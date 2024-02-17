@@ -181,34 +181,34 @@
             <TextView
                 android:id="@+id/sizeUk8"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_23sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/size_shape_selector"
-                android:padding="4dp"
-                android:text="UK 8"
+                android:padding="@dimen/_4sdp"
+                android:text="S"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:id="@+id/sizeUk10"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_23sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/size_shape_selector"
-                android:padding="4dp"
-                android:text="UK 10"
+                android:padding="@dimen/_4sdp"
+                android:text="M"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:id="@+id/sizeUk12"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_23sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/size_shape_selector"
-                android:padding="4dp"
-                android:text="UK 12"
+                android:padding="@dimen/_4sdp"
+                android:text="L"
                 android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
@@ -229,7 +229,7 @@
             <ImageButton
                 android:id="@+id/add"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_bg_text"
@@ -241,7 +241,7 @@
             <TextView
                 android:id="@+id/number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_bg_text"
                 android:gravity="center"
@@ -251,7 +251,7 @@
             <ImageButton
                 android:id="@+id/subtract"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_bg_text"
                 android:padding="4dp"

@@ -2,8 +2,13 @@ package com.example.sastabazar.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -17,10 +22,11 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
+import java.io.ByteArrayOutputStream
 
 class BuyDressActivity : AppCompatActivity() {
     private var selectedDressQuantity = 1
-    private var selectedDressSize ="UK 8"
+    private var selectedDressSize ="S"
     private var selectedDressColor = R.drawable.pink_color_item
 //    private var flashSaleDressItem : ProductModel = ProductModel()
     private lateinit var binding: ActivityBuyDressBinding
@@ -152,6 +158,8 @@ class BuyDressActivity : AppCompatActivity() {
 
 
     private fun addProductToCart() {
+
+
         val firebaseFirestore = Firebase.firestore
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
@@ -185,7 +193,13 @@ class BuyDressActivity : AppCompatActivity() {
         val intent = Intent(this@BuyDressActivity , ShippingActivity::class.java)
         intent.putExtra("DressName" , binding.dressname.text.toString())
         intent.putExtra("DiscountPrize" , binding.discountprice.text.toString())
-        intent.putExtra("DressImage" , binding.productImage.toString())
+        val quantity = selectedDressQuantity
+        intent.putExtra("DressQuantity", quantity)
+        val totalPrice = quantity * binding.discountprice.text.toString().toDouble()
+        intent.putExtra("TotalPrice", totalPrice)
+        intent.putExtra("ImageUrl", productModel.imageUrl)
+        intent.putExtra("DressColor",selectedDressColor)
+        intent.putExtra("Size",selectedDressSize)
         startActivity(intent)
     }
 
@@ -223,15 +237,15 @@ class BuyDressActivity : AppCompatActivity() {
     private fun handleSizeSelection(){
         binding.apply {
             sizeUk8.setOnClickListener{
-                selectedDressSize = "UK 8"
+                selectedDressSize = "S"
                 selectedTextView(sizeUk8)
             }
             sizeUk10.setOnClickListener{
-                selectedDressSize = "UK 10"
+                selectedDressSize = "M"
                 selectedTextView(sizeUk10)
             }
             sizeUk12.setOnClickListener{
-                selectedDressSize = "UK 12"
+                selectedDressSize = "L"
                 selectedTextView(sizeUk12)
             }
         }
@@ -249,18 +263,26 @@ class BuyDressActivity : AppCompatActivity() {
             pinkimage.setOnClickListener {
                 selectedDressColor = R.color.primary_pink
                 selectedColor(pinkimage)
+                Toast.makeText(this@BuyDressActivity , "This color is not available for this dress...",Toast.LENGTH_SHORT).show()
+
             }
             yellowimage.setOnClickListener {
                 selectedDressColor = R.color.dress_yellow
                 selectedColor(yellowimage)
+                Toast.makeText(this@BuyDressActivity , "This color is not available for this dress...",Toast.LENGTH_SHORT).show()
+
             }
             greenimage.setOnClickListener {
                 selectedDressColor = R.color.dress_green
                 selectedColor(greenimage)
+                Toast.makeText(this@BuyDressActivity , "This color is not available for this dress...",Toast.LENGTH_SHORT).show()
+
             }
             blueimage.setOnClickListener {
                 selectedDressColor = R.color.dress_blue
                 selectedColor(blueimage)
+                Toast.makeText(this@BuyDressActivity , "This color is not available for this dress...",Toast.LENGTH_SHORT).show()
+
             }
         }
     }

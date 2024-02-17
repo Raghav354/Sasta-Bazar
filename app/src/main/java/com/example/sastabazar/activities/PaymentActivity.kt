@@ -1,13 +1,19 @@
 package com.example.sastabazar.activities
 
+import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sastabazar.R
 import com.example.sastabazar.adaptors.CartAdapter
 import com.example.sastabazar.databinding.ActivityPaymentBinding
 import com.example.sastabazar.databinding.FragmentCartBinding
+import com.example.sastabazar.databinding.PaymentsuccesDialogboxBinding
 import com.example.sastabazar.model.ProductModel
 
 class PaymentActivity : AppCompatActivity() {
@@ -25,12 +31,15 @@ class PaymentActivity : AppCompatActivity() {
         val intent = intent
         val dressName = intent.getStringExtra("DressName")
         val dressPrize = intent.getStringExtra("DiscountPrize")
-        val dressImage = intent.getStringExtra("DressImage")
-        val dressQuantity = intent.getIntExtra("DressQuantity",1)
+        val imageUrl = intent.getStringExtra("ImageUrl")
+        val dressQuantity = intent.getIntExtra("DressQuantity", 1)
         val size = intent.getStringExtra("Size")
         val color = intent.getStringExtra("DressColor")
+        val totalPrice = intent.getDoubleExtra("TotalPrice", 0.0)
 
-        productList.add(ProductModel(null , dressName , dressPrize?.toDouble() , null , null ,dressImage , "AVG45"))
+
+
+        productList.add(ProductModel(null , dressName , dressPrize?.toDouble() , null , color ,imageUrl.toString() , "AVG45",size))
         adapter = CartAdapter(this , productList)
         recyclerView = binding.rv
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -38,7 +47,34 @@ class PaymentActivity : AppCompatActivity() {
 
         //setting prize
         binding.subTotalTxt.text = dressPrize.toString()
-        binding.totalPrizeTxt.text = dressPrize.toString()
+        binding.totalPrizeTxt.text = totalPrice.toString()
+        binding.quantity.text = dressQuantity.toString()
 
+
+        binding.payBtn.setOnClickListener {
+            val selectedRadioButtonId = binding.radioGroup.checkedRadioButtonId
+
+            if (selectedRadioButtonId == R.id.radioButton1) {
+                Toast.makeText(this@PaymentActivity, "Redirected to Payment Gateway", Toast.LENGTH_SHORT).show()
+            } else if (selectedRadioButtonId == R.id.radioButton2) {
+                showPaymentSuccessDialog()
+            } else {
+                Toast.makeText(this@PaymentActivity, "Please select a payment method", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
+    private fun showPaymentSuccessDialog() {
+        val dialog = Dialog(this@PaymentActivity)
+        val dialogBinding = PaymentsuccesDialogboxBinding.inflate(LayoutInflater.from(this@PaymentActivity))
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.startShopping.setOnClickListener {
+            startActivity(Intent(this@PaymentActivity , HomeActivity::class.java))
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

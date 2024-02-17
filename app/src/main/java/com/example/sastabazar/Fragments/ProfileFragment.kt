@@ -70,10 +70,12 @@ class ProfileFragment : Fragment() {
 
             editProfile.setOnClickListener {
                 makeEditable()
+                saveProfile.isEnabled
             }
             saveProfile.setOnClickListener {
                 saveUserDetails()
                 makeUnEditable()
+                saveProfile.isEnabled=false
             }
 
             profilepic.setOnClickListener {

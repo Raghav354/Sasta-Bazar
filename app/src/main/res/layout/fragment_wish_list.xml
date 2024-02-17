@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.WishListFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,10 +19,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/arrow_back"
-            app:title="Home"
             android:alpha="2"
-            />
+            app:navigationIcon="@drawable/arrow_back"
+            app:title="Home" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,119 +42,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
         <TextView
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
-            android:text="Items"
-            android:textSize="@dimen/_12sdp"
-            android:gravity="center"
             android:layout_marginLeft="@dimen/_16sdp"
-            />
+            android:gravity="center"
+            android:text="Items"
+            android:textSize="@dimen/_12sdp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Price"
             android:gravity="center"
-            android:textSize="@dimen/_12sdp"
-            />
+            android:text="Price"
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
     <View
         android:id="@+id/divider1"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/darker_gray"
         android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@id/contentDesp"
-        app:layout_constraintStart_toStartOf="@id/contentDesp"
+        android:background="@color/darker_gray"
         app:layout_constraintEnd_toEndOf="@id/contentDesp"
-        />
+        app:layout_constraintStart_toStartOf="@id/contentDesp"
+        app:layout_constraintTop_toBottomOf="@id/contentDesp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWishList"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_350sdp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_2sdp"
-        android:layout_marginRight="@dimen/_2sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        tools:listitem="@layout/rv_item_wishlist"
-        app:layout_constraintTop_toBottomOf="@id/divider1"
+        android:layout_marginRight="@dimen/_2sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        tools:listitem="@layout/rv_item_wishlist" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:background="@color/darker_gray"
         android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginRight="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@id/rvWishList"
-        app:layout_constraintStart_toStartOf="@id/rvWishList"
+        android:background="@color/darker_gray"
         app:layout_constraintEnd_toEndOf="@id/rvWishList"
-        />
+        app:layout_constraintStart_toStartOf="@id/rvWishList"
+        app:layout_constraintTop_toBottomOf="@id/rvWishList" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        app:layout_goneMarginTop="@dimen/_9sdp"
-        android:layout_marginEnd="@dimen/_9sdp"
-        app:layout_constraintEnd_toEndOf="@id/divider2"
-        app:layout_constraintTop_toBottomOf="@id/divider2">
-
-        <TextView
-            android:id="@+id/linearLayoutPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sub Total"
-            android:textStyle="bold"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:textSize="@dimen/_10sdp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rs:"
-            android:textSize="@dimen/_10ssp"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:layout_marginLeft="@dimen/_2sdp"
-            android:text="7999"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"
-            />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/addToCartBtn"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:backgroundTint="#8C8585"
-        android:text="Checkout"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/divider2"
-        app:layout_constraintStart_toStartOf="@+id/divider2"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="72dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_heart_filled"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

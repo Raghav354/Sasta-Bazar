@@ -30,10 +30,10 @@ class CartAdapter(var context:Context , var productList:ArrayList<ProductModel>)
             placeholder(R.drawable.image)
         }
         holder.binding.dressname.text = productList.get(position).name
-        holder.binding.coupancode.text = productList.get(position).id
+        holder.binding.coupancode.text = productList.get(position).productCode
         holder.binding.price.text = "Rs. "+productList.get(position).price.toString()
-//        holder.binding.color.text = productList.get(position).color.toString()
-//        holder.binding.size.text = productList.get(position).size.toString()
+//        holder.binding.coloricon.text = productList.get(position).color.toString()
+        holder.binding.size.text = "Size: "+productList.get(position).size
 
         holder.itemView.setOnClickListener {
             context.startActivity(
