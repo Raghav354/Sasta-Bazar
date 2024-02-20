@@ -81,18 +81,22 @@ class ShippingActivity : AppCompatActivity() {
         val size = intent.getStringExtra("Size")
         val color = intent.getStringExtra("DressColor")
 
-        productList.add(
-            ProductModel(
-                null,
-                dressName,
-                dressPrize?.toDouble(),
-                null,
-                color,
-                imageUrl.toString(),
-                "AVG45",
-                size
+        if (size != null) {
+            productList.add(
+                ProductModel(
+                    null,
+                    dressName,
+                    dressPrize?.toDouble(),
+                    null,
+                    null,
+                    color,
+                    imageUrl.toString(),
+                    "AVG45",
+                    discountPercentage = null,
+                    size
+                )
             )
-        )
+        }
         adapter = CartAdapter(this, productList)
         recyclerView = binding.rv
         recyclerView.layoutManager = LinearLayoutManager(this)

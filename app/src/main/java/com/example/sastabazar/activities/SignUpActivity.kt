@@ -62,6 +62,7 @@ class SignUpActivity : AppCompatActivity() {
                         LoginActivity::class.java
                     )
                 )
+                finish()
             }
             signUp.setOnClickListener { createNewUser() }
             google.setOnClickListener {

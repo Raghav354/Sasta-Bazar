@@ -20,16 +20,18 @@ import com.google.firebase.ktx.Firebase
 
 class DashBoardFragment : Fragment() {
 
-    private lateinit var binding : FragmentDashBoardBinding
+    private lateinit var binding: FragmentDashBoardBinding
     private lateinit var productList: ArrayList<ProductModel>
-    private lateinit  var adapter: ProductAdapter
+    private lateinit var adapter: ProductAdapter
+    val moreProductsList = ArrayList<ProductModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDashBoardBinding.inflate(inflater,container,false)
+        binding = FragmentDashBoardBinding.inflate(inflater, container, false)
 
 
         return binding.root
@@ -41,7 +43,7 @@ class DashBoardFragment : Fragment() {
         productList = ArrayList()
         adapter = ProductAdapter(requireContext(),productList)
         binding.mainRV.adapter = adapter
-//        getProductData()
+
         Firebase.firestore.collection("Products").limit(10).get().addOnSuccessListener {
             productList.clear()
             for(i in it.documents)
@@ -53,18 +55,35 @@ class DashBoardFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
 
-            .addOnFailureListener{
-                Toast.makeText(requireContext(),it.localizedMessage,Toast.LENGTH_SHORT).show()
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
 
-        binding.dress.setOnClickListener{
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Dresses"))
+        getMoreProducts()
+
+        binding.dress.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    ProjectCatActivity::class.java
+                ).putExtra("Category", "Dresses")
+            )
         }
-        binding.jumpsuits.setOnClickListener{
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","JumpSuits"))
+        binding.jumpsuits.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    ProjectCatActivity::class.java
+                ).putExtra("Category", "JumpSuits")
+            )
         }
-        binding.tops.setOnClickListener{
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Tops"))
+        binding.tops.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    ProjectCatActivity::class.java
+                ).putExtra("Category", "Tops")
+            )
         }
         binding.bottoms.setOnClickListener{
             startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Bottoms"))
@@ -90,6 +109,28 @@ class DashBoardFragment : Fragment() {
         val imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList)
 
+    }
+
+    private fun getMoreProducts() {
+
+        val productAdapter = ProductAdapter(requireContext(), moreProductsList)
+        binding.moreProductsRV.adapter = productAdapter
+        Firebase.firestore.collection("Products").limit(20).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val product = document.toObject<ProductModel>()
+                    product.id = document.id
+                    moreProductsList.add(product)
+                }
+
+                productAdapter.notifyDataSetChanged()
+            }.addOnFailureListener { exception ->
+            Toast.makeText(
+                requireContext(),
+                "Error getting documents: ${exception.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
 

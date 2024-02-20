@@ -19,8 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,10 +33,10 @@
             android:src="@drawable/image_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBar"
@@ -52,61 +51,48 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:navigationIcon="@drawable/arrow_back"
-                app:title="Home"
                 android:alpha="2"
-                />
+                app:navigationIcon="@drawable/arrow_back"
+                app:title="Home" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/dressname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="One Shoulder Linen Dress"
-            android:textColor="@color/black"
-            android:background="#80FFFFFF"
-            android:textSize="@dimen/_18ssp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-            app:layout_constraintStart_toStartOf="parent" />
+
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="0dp"
             android:layout_height="@dimen/_70sdp"
+            android:src="@drawable/bottom_bg"
             app:layout_constraintBottom_toBottomOf="@id/product_image"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:srcCompat="@drawable/bottom_bg" />
-
-        <!-- Rating Bar -->
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/_300sdp"
             android:progressTint="@color/dress_yellow"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/rs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginStart="28dp"
             android:layout_marginBottom="@dimen/_14sdp"
             android:text="Rs."
-            android:background="#80FFFFFF"
-            android:textColor="@color/black"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_20ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/discountprice"
@@ -114,9 +100,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="5740"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/_28ssp"
             android:textStyle="bold"
-            android:background="#80FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/rs"
             app:layout_constraintLeft_toRightOf="@+id/rs"
             app:layout_constraintTop_toTopOf="@+id/rs"
@@ -136,24 +122,41 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1" >
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
+
+        <TextView
+            android:id="@+id/dressname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:maxHeight="@dimen/_2sdp"
+            android:maxLines="1"
+            android:padding="@dimen/_2sdp"
+            android:text="One Shoulder Linen Dress"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sizetext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
             android:text="Size"
-            android:textSize="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:textStyle="bold"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/dressname" />
 
         <TextView
             android:id="@+id/seeMore_details"
@@ -171,10 +174,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@id/sizetext"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="@id/sizetext"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sizetext">
 
 
@@ -185,9 +189,9 @@
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/size_shape_selector"
-                android:padding="@dimen/_4sdp"
+                android:padding="@dimen/_6sdp"
                 android:text="S"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <TextView
                 android:id="@+id/sizeUk10"
@@ -196,7 +200,7 @@
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/size_shape_selector"
-                android:padding="@dimen/_4sdp"
+                android:padding="@dimen/_6sdp"
                 android:text="M"
                 android:textSize="@dimen/_12sdp" />
 
@@ -207,7 +211,7 @@
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_weight="1"
                 android:background="@drawable/size_shape_selector"
-                android:padding="@dimen/_4sdp"
+                android:padding="@dimen/_6sdp"
                 android:text="L"
                 android:textSize="@dimen/_12sdp" />
 
@@ -231,12 +235,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_bg_text"
                 android:padding="4dp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:src="@drawable/plus"
-                />
+                android:src="@drawable/plus" />
 
             <TextView
                 android:id="@+id/number"
@@ -246,18 +249,17 @@
                 android:background="@drawable/rectangle_bg_text"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="1"  />
+                android:text="1" />
 
             <ImageButton
                 android:id="@+id/subtract"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_bg_text"
                 android:padding="4dp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:src="@drawable/minus"
-                />
+                android:src="@drawable/minus" />
 
         </LinearLayout>
 
@@ -267,9 +269,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Color"
+            android:layout_marginStart="@dimen/_10sdp"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/sizeLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/sizeLayout" />
 
         <LinearLayout
@@ -278,7 +281,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/color"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/color">
 
             <ImageView
@@ -286,8 +290,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:background="@color/primary_pink"
-                />
+                android:background="@color/primary_pink" />
 
             <ImageView
                 android:id="@+id/blueimage"
@@ -304,8 +307,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_weight="1"
-                android:background="@drawable/green_color_bg_shape_selector"
-                />
+                android:background="@drawable/green_color_bg_shape_selector" />
 
             <ImageView
                 android:id="@+id/yellowimage"
@@ -315,8 +317,7 @@
                 android:layout_weight="1"
 
 
-                android:background="@drawable/yellow_color_bg_shape_selector"
-                />
+                android:background="@drawable/yellow_color_bg_shape_selector" />
 
         </LinearLayout>
 
@@ -353,11 +354,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat_semibold"
+            android:inputType="textMultiLine"
             android:text="@string/lorem_ipsum"
             android:textColor="@color/highlightedtextcolor"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:inputType="textMultiLine"
             app:layout_constraintStart_toStartOf="@id/dressmaterial"
             app:layout_constraintTop_toBottomOf="@+id/dressmaterial" />
 
@@ -378,26 +379,23 @@
             app:layout_constraintTop_toBottomOf="@id/productDesc" />
 
         <!-- Add to Cart Button -->
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/addtocart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_16sdp"
-            android:textAllCaps="false"
             android:background="@drawable/add_to_cart_bg"
-            android:textColor="@color/white"
             android:text="Add to Cart"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/buynow"
             app:layout_constraintStart_toStartOf="@+id/buynow"
             app:layout_constraintTop_toBottomOf="@+id/buynow" />
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

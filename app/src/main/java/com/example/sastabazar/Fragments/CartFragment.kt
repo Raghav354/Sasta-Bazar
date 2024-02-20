@@ -56,15 +56,19 @@ class CartFragment : Fragment() {
                     val product = document.toObject<ProductModel>()
                     product.id = document.id
                     cartItemList.add(product)
+                    Log.d("CartFragment", "Discount Price: ${product.discountPrice}")
                 }
                 cartAdapter.notifyDataSetChanged()
 
                 //total price of the products
                 var totalPrice = 0.0
                 for (product in cartItemList) {
-                    totalPrice += product.price ?: 0.0
+                    if (product.discountPrice != null) {
+                        totalPrice += product.discountPrice!!
+                    }
                 }
                 binding.price.text = totalPrice.toString()
+
             }
             .addOnFailureListener { e ->
                 Log.w("CartFragment", "Error reading cart items: ${e.message}")

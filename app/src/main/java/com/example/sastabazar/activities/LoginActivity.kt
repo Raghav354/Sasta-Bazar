@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener { userLogin() }
             signUpText.setOnClickListener {
                 startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
+                finish()
             }
             forgotPass.setOnClickListener { handleForgotPassword(binding.email.text.toString()) }
             google.setOnClickListener {

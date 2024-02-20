@@ -2,17 +2,15 @@ package com.example.sastabazar.activities
 
 import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sastabazar.R
 import com.example.sastabazar.adaptors.CartAdapter
 import com.example.sastabazar.databinding.ActivityPaymentBinding
-import com.example.sastabazar.databinding.FragmentCartBinding
 import com.example.sastabazar.databinding.PaymentsuccesDialogboxBinding
 import com.example.sastabazar.model.ProductModel
 
@@ -39,7 +37,20 @@ class PaymentActivity : AppCompatActivity() {
 
 
 
-        productList.add(ProductModel(null , dressName , dressPrize?.toDouble() , null , color ,imageUrl.toString() , "AVG45",size))
+        productList.add(
+            ProductModel(
+                null,
+                dressName,
+                dressPrize?.toDouble(),
+                null,
+                null,
+                color,
+                imageUrl.toString(),
+                "AVG45",
+                discountPercentage = null,
+                size
+            )
+        )
         adapter = CartAdapter(this , productList)
         recyclerView = binding.rv
         recyclerView.layoutManager = LinearLayoutManager(this)

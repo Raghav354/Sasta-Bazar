@@ -58,6 +58,8 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:fontFamily="@font/montserrat_semibold"
             android:text="GF0125"
+            android:maxLength="10"
+            android:maxLines="1"
             android:textColor="#5C5757"
             android:textFontWeight="700"
             android:textSize="@dimen/_10ssp"

@@ -81,6 +81,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_2sdp"
         android:layout_marginBottom="32dp"
+        tools:listitem="@layout/rv_item_wishlist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/divider1"
         app:layout_constraintStart_toStartOf="@id/divider1"

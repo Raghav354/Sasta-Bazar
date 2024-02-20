@@ -31,8 +31,8 @@ class CategoryAdapter(var context: Context, var productList: ArrayList<ProductMo
         }
         holder.binding.dressname.text = productList.get(position).name
         holder.binding.coupancode.text = productList.get(position).id
-        holder.binding.price.text = productList.get(position).price.toString()
-        holder.binding.color.text = productList.get(position).color
+        holder.binding.price.text = "Rs. " + productList.get(position).discountPrice.toString()
+        holder.binding.color.text = productList.get(position).productColor
 
         holder.itemView.setOnClickListener {
             context.startActivity(

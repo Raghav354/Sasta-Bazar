@@ -35,8 +35,14 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
             placeholder(R.drawable.image)
         }
         holder.binding.dressname.text = productList.get(position).name
-        holder.binding.productCode.text = productList.get(position).id
-        holder.binding.discountprice.text = productList.get(position).price.toString()
+        holder.binding.productCode.text = productList.get(position).productCoupanCode
+        holder.binding.discountprice.text =
+            "Rs. " + productList.get(position).discountPrice.toString()
+        holder.binding.originalprice.text =
+            "Rs." + productList.get(position).originalPrice.toString()
+        holder.binding.discountpercent.text =
+            productList.get(position).discountPercentage.toString() + "%Off"
+
 
         holder.itemView.setOnClickListener {
             context.startActivity(

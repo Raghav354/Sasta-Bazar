@@ -3,15 +3,12 @@ package com.example.sastabazar.adaptors
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.example.sastabazar.R
 import com.example.sastabazar.activities.BuyDressActivity
-import com.example.sastabazar.databinding.FragmentWishListBinding
-import com.example.sastabazar.databinding.RvItemCartBinding
 import com.example.sastabazar.databinding.RvItemWishlistBinding
 import com.example.sastabazar.model.ProductModel
 
@@ -35,7 +32,7 @@ class WishListAdapter(var context: Context , var productList:ArrayList<ProductMo
         }
         holder.binding.dressname.text = productList.get(position).name
         holder.binding.coupancode.text = productList.get(position).id
-        holder.binding.price.text = "Rs. " + productList.get(position).price.toString()
+        holder.binding.price.text = "Rs. " + productList.get(position).discountPrice.toString()
 //        holder.binding.color.text = productList.get(position).color.toString()
 //        holder.binding.size.text = productList.get(position).size.toString()
 

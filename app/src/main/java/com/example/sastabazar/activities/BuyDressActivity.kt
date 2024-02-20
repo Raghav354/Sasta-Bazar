@@ -3,13 +3,8 @@ package com.example.sastabazar.activities
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,7 +20,6 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import java.io.ByteArrayOutputStream
 
 class BuyDressActivity : AppCompatActivity() {
     private var selectedDressQuantity = 1
@@ -48,26 +42,101 @@ class BuyDressActivity : AppCompatActivity() {
         handleBtnClick()
         handleSizeSelection()
         handleColorSelection()
+
         val productId = intent.getStringExtra("PRODUCT_ID")
         productId?.let {
             getProductDetails(it)
             checkWishlistStatus(it)
+            checkCartStatus(it)
         }
 
         binding.addtowishlist.setOnClickListener {
             productId?.let { toggleWishlistStatus(it) }
+        }
+        binding.addtocart.setOnClickListener {
+            productId?.let { toggleCartStatus(it) }
         }
 
 
 //        val navController = findNavController(R.id.nav_host_fragment_activity_home)
 //        navController.navigate(R.id.navigation_cart)
 
+    }
 
+    private fun toggleCartStatus(productId: String) {
+        val docRef = firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(productId)
 
-
-
+        docRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    removeFromCart(docRef)
+                } else {
+                    addToCart(docRef)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error toggling cart status: $e")
+            }
 
     }
+
+    private fun removeFromCart(docRef: DocumentReference) {
+        docRef.delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Item removed from cart!", Toast.LENGTH_SHORT).show()
+                updateButtonState(false)
+                binding.addtocart.text = "Add to cart"
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error removing item: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun addToCart(docRef: DocumentReference) {
+        docRef.set(
+            hashMapOf(
+                "productCoupanCode" to productModel.productCoupanCode,
+                "name" to productModel.name,
+                "imageUrl" to productModel.imageUrl,
+                "discountPrice" to productModel.discountPrice,
+                "productSize" to selectedDressSize,
+                "productColor" to selectedDressColor.toString()
+                // Add other product details as needed
+            ), SetOptions.merge()
+        )
+            .addOnSuccessListener {
+                Toast.makeText(this, "Item added to cart!", Toast.LENGTH_SHORT).show()
+                updateButtonState(true)
+                binding.addtocart.text = "Tap to remove from cart"
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun checkCartStatus(productId: String) {
+        firebaseFirestore.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(productId)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    updateButtonState(true)
+                    binding.addtocart.text = "Tap to remove from cart"
+                } else {
+                    updateButtonState(false)
+                    binding.addtocart.text = "Add to cart"
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error checking wishlist status: $e")
+            }
+    }
+
 
     private fun getProductDetails(productId: String) {
         firebaseFirestore.collection("Products").document(productId).get()
@@ -80,7 +149,7 @@ class BuyDressActivity : AppCompatActivity() {
                     binding.productImage.load(productModel.imageUrl)
                     binding.dressname.text = productModel.name
                     binding.productDesc.text = productModel.disp
-                    binding.discountprice.text = productModel.price.toString()
+                    binding.discountprice.text = productModel.discountPrice.toString()
                 }
             }
             .addOnFailureListener { e ->
@@ -93,7 +162,7 @@ class BuyDressActivity : AppCompatActivity() {
             add.setOnClickListener{increaseNumber()}
             subtract.setOnClickListener{decreaseNumber()}
             buynow.setOnClickListener { buyThisDress() }
-            addtocart.setOnClickListener { addToCart() }
+//            addtocart.setOnClickListener { addToCart() }
             toolbar.setOnClickListener{backToHome()}
 
         }
@@ -107,11 +176,12 @@ class BuyDressActivity : AppCompatActivity() {
     private fun addToWishlist(docRef: DocumentReference) {
         docRef.set(
             hashMapOf(
-                "id" to productModel.id,
+                "productCoupanCode" to productModel.productCoupanCode,
                 "name" to productModel.name,
                 "imageUrl" to productModel.imageUrl,
-                "price" to productModel.price,
-                "size" to selectedDressSize,
+                "discountPrice" to productModel.discountPrice,
+                "productSize" to selectedDressSize,
+                "productColor" to selectedDressColor.toString()
                 // Add other product details as needed
             ), SetOptions.merge()
         )
@@ -174,82 +244,13 @@ class BuyDressActivity : AppCompatActivity() {
             }
     }
 
-    private fun addToCart() {
-         firebaseFirestore = Firebase.firestore
-         userId = FirebaseAuth.getInstance().currentUser!!.uid
-
-        // Check if the product is already in the cart
-        firebaseFirestore.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(productModel.id!!)
-            .get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    // Product already exists, remove it from cart
-                    removeFromCart()
-                    updateButtonState(false)
-                } else {
-                    addProductToCart() // Call creation function and update button
-                }
-            }
-            .addOnFailureListener { e ->
-                // Handle errors during existence check
-                Toast.makeText(this, "Error checking cart: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun removeFromCart() {
-        val firebaseFirestore = Firebase.firestore
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-
-        // Remove the product document from the cart
-         firebaseFirestore.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(productModel.id!!) // Use product ID as document ID
-            .delete()
-            .addOnSuccessListener {
-                Toast.makeText(this, "Product removed from cart!", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                // Handle errors during removal
-                Toast.makeText(this, "Error removing product: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-             // Wait for asynchronous operation to complete
-    }
-
-
-    private fun addProductToCart() {
-
-
-        val firebaseFirestore = Firebase.firestore
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-
-        firebaseFirestore.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(productModel.id!!) // Use product ID as document ID
-            .set(hashMapOf(
-                "id" to productModel.id,
-                "name" to productModel.name,
-                "imageUrl" to productModel.imageUrl,
-                "price" to productModel.price,
-                "size" to selectedDressSize,
-                // Your cart item data here
-            ), SetOptions.merge())
-            .addOnSuccessListener {
-                Toast.makeText(this, "Item added to cart!", Toast.LENGTH_SHORT).show()
-                updateButtonState(true) // Set button state based on addition
-            }
-            .addOnFailureListener { e ->
-                // Handle errors during cart item creation
-                Toast.makeText(this, "Error adding item: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
-
     private fun updateButtonState(isInCart: Boolean) {
-        binding.addtocart.setBackgroundColor(if (isInCart) Color.RED else R.drawable.add_to_cart_bg)
+        binding.addtocart.setBackgroundColor(
+            if (isInCart)
+                Color.RED
+            else
+                R.drawable.add_to_cart_bg
+        )
     }
 
     private fun buyThisDress() {
