@@ -31,10 +31,10 @@ class WishListAdapter(var context: Context , var productList:ArrayList<ProductMo
             placeholder(R.drawable.image)
         }
         holder.binding.dressname.text = productList.get(position).name
-        holder.binding.coupancode.text = productList.get(position).id
+        holder.binding.coupancode.text = productList.get(position).productCoupanCode
         holder.binding.price.text = "Rs. " + productList.get(position).discountPrice.toString()
 //        holder.binding.color.text = productList.get(position).color.toString()
-//        holder.binding.size.text = productList.get(position).size.toString()
+        holder.binding.size.text = "Size: " + productList.get(position).productSize
 
         holder.itemView.setOnClickListener {
             context.startActivity(

@@ -102,7 +102,7 @@ class BuyDressActivity : AppCompatActivity() {
                 "name" to productModel.name,
                 "imageUrl" to productModel.imageUrl,
                 "discountPrice" to productModel.discountPrice,
-                "productSize" to selectedDressSize,
+                "productSize" to productModel.productSize,
                 "productColor" to selectedDressColor.toString()
                 // Add other product details as needed
             ), SetOptions.merge()
@@ -180,7 +180,7 @@ class BuyDressActivity : AppCompatActivity() {
                 "name" to productModel.name,
                 "imageUrl" to productModel.imageUrl,
                 "discountPrice" to productModel.discountPrice,
-                "productSize" to selectedDressSize,
+                "productSize" to productModel.productSize,
                 "productColor" to selectedDressColor.toString()
                 // Add other product details as needed
             ), SetOptions.merge()

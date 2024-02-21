@@ -56,7 +56,7 @@ class CartFragment : Fragment() {
                     val product = document.toObject<ProductModel>()
                     product.id = document.id
                     cartItemList.add(product)
-                    Log.d("CartFragment", "Discount Price: ${product.discountPrice}")
+                    Log.d("CartFragment", " Size: ${product.productSize}")
                 }
                 cartAdapter.notifyDataSetChanged()
 

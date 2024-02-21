@@ -21,30 +21,29 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
-                android:layout_width="@dimen/_290sdp"
+                android:layout_width="@dimen/_260sdp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/bg_rounded_stroke"
                 android:focusable="false"
                 app:iconifiedByDefault="false"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:queryHint="Search" />
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/notification"-->
-<!--                android:layout_width="@dimen/_40sdp"-->
-<!--                android:layout_height="@dimen/_30sdp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:background="@color/white"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                android:src="@drawable/notification"-->
-<!--                app:layout_constraintBottom_toBottomOf="@id/searchView"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/searchView"-->
-<!--                app:layout_constraintTop_toTopOf="@id/searchView"-->
-<!--                tools:ignore="TouchTargetSizeCheck" />-->
+            <ImageButton
+                android:id="@+id/notification"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                android:src="@drawable/notification"
+                app:layout_constraintBottom_toBottomOf="@id/searchView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/searchView"
+                app:layout_constraintTop_toTopOf="@id/searchView"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -251,7 +250,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textproducts"
-                tools:itemCount="20"
                 android:layout_marginTop="12dp"
                 tools:listitem="@layout/rv_item"
                 android:paddingBottom="@dimen/_7sdp" />
@@ -281,7 +279,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/moreProducts"
                 app:spanCount="2"
-                tools:itemCount="20"
                 tools:listitem="@layout/rv_item" />
 
 
