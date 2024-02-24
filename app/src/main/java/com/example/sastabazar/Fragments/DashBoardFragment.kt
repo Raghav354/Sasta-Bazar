@@ -2,11 +2,13 @@ package com.example.sastabazar.Fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.models.SlideModel
@@ -19,6 +21,9 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class DashBoardFragment : Fragment() {
@@ -29,6 +34,7 @@ class DashBoardFragment : Fragment() {
     val moreProductsList = ArrayList<ProductModel>()
     private lateinit var moreProductsAdapter:ProductAdapter
     private var isFetchingMore = false
+    private var lastVisibleProduct: DocumentSnapshot? = null
 
 
     override fun onCreateView(
@@ -44,6 +50,8 @@ class DashBoardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        handleButtonClick()
 
         productList = ArrayList()
         adapter = ProductAdapter(requireContext(),productList)
@@ -68,7 +76,6 @@ class DashBoardFragment : Fragment() {
         })
 
 
-        moreProductsList.clear() // Ensure initial clear state
         moreProductsAdapter = ProductAdapter(requireContext(), moreProductsList)
         binding.moreProductsRV.adapter = moreProductsAdapter
 
@@ -81,49 +88,12 @@ class DashBoardFragment : Fragment() {
                 val totalItemCount = layoutManager.itemCount
 
                 if (!isFetchingMore && lastVisibleItemPosition == totalItemCount - 1) {
-                    // Reached the end of the list, fetch more products
                     fetchMoreProducts()
                 }
             }
         })
-
-
-
-        Firebase.firestore.collection("Products").limit(20).get().addOnSuccessListener { documents ->
-            productList.clear()
-            for (i in documents) {
-                val tempProductModel = i.toObject<ProductModel>()
-                tempProductModel.id = i.id
-                productList.add(tempProductModel)
-            }
-            adapter.notifyDataSetChanged()
-        }.addOnFailureListener {
-            Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
-        }
-
-
-
-
-        binding.dress.setOnClickListener {
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category", "Dresses"))
-        }
-        binding.jumpsuits.setOnClickListener {
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category", "JumpSuits"))
-        }
-        binding.tops.setOnClickListener { startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category", "Tops"))
-        }
-        binding.bottoms.setOnClickListener{
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Bottoms"))
-        }
-        binding.saree.setOnClickListener{
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java).putExtra("Category","Saree"))
-        }
-        binding.seeMore.setOnClickListener {
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
-        }
-        binding.seeMore2.setOnClickListener {
-            startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
-        }
+        fetchingData(productList,adapter)
+        fetchingData(moreProductsList,moreProductsAdapter)
 
 
 //      Image slider ->  imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
@@ -137,27 +107,111 @@ class DashBoardFragment : Fragment() {
         imageSlider.setImageList(imageList)
 
 
-
     }
+
+    private fun fetchingData(productList: ArrayList<ProductModel>, adapter: ProductAdapter) {
+        val firestore = Firebase.firestore
+        val productsCollection = firestore.collection("Products").limit(20)
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            try {
+                val documents = productsCollection.get().await()
+
+                productList.clear()
+                for (document in documents) {
+                    val tempProductModel = document.toObject<ProductModel>()
+                    tempProductModel.id = document.id
+                    productList.add(tempProductModel)
+                }
+
+                adapter.notifyDataSetChanged()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun fetchMoreProducts() {
         isFetchingMore = true
-        val productAdapter = ProductAdapter(requireContext(), moreProductsList)
-        binding.moreProductsRV.adapter = productAdapter
 
-        Firebase.firestore.collection("Products").limit(20).get()
-            .addOnSuccessListener { documents ->
+        val firestore = Firebase.firestore
+        val productsCollection = if (lastVisibleProduct != null) {
+            firestore.collection("Products")
+                .startAfter(lastVisibleProduct!!)
+                .limit(20)
+        } else {
+            firestore.collection("Products")
+                .limit(20)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            try {
+                val documents = productsCollection.get().await()
+
                 for (document in documents) {
                     val product = document.toObject<ProductModel>()
                     product.id = document.id
                     moreProductsList.add(product)
                 }
-                productAdapter.notifyDataSetChanged()
+
+                moreProductsAdapter.notifyDataSetChanged()
                 isFetchingMore = false
-            }.addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Error getting documents: ${exception.message}", Toast.LENGTH_SHORT).show()
+                if (!documents.isEmpty) {
+                    lastVisibleProduct = documents.documents[documents.size() - 1]
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Error getting documents: ${e.message}", Toast.LENGTH_SHORT).show()
                 isFetchingMore = false
             }
+        }
+    }
+
+    private fun handleButtonClick() {
+        binding.apply {
+            dress.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Dresses")
+                )
+            }
+            jumpsuits.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "JumpSuits")
+                )
+            }
+            bottoms.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Bottoms")
+                )
+            }
+
+            saree.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Saree")
+                )
+            }
+            tops.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Tops")
+                )
+            }
+            seeMore.setOnClickListener {
+                startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
+            }
+            seeMore2.setOnClickListener {
+                startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
+            }
+        }
     }
 
 

@@ -255,6 +255,7 @@ class BuyDressActivity : AppCompatActivity() {
 
     private fun buyThisDress() {
         val intent = Intent(this@BuyDressActivity , ShippingActivity::class.java)
+        intent.putExtra("DATA_SOURCE", "BUY_DRESS")
         intent.putExtra("DressName" , binding.dressname.text.toString())
         intent.putExtra("DiscountPrize" , binding.discountprice.text.toString())
         val quantity = selectedDressQuantity

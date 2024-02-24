@@ -10,7 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sastabazar.R
-import com.example.sastabazar.adaptors.CartAdapter
+import com.example.sastabazar.adaptors.ShippingAdapter
 import com.example.sastabazar.databinding.ActivityShippingBinding
 import com.example.sastabazar.model.ProductModel
 import com.example.sastabazar.model.ShippingInfo
@@ -24,7 +24,9 @@ class ShippingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShippingBinding
     private lateinit var productList: ArrayList<ProductModel>
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CartAdapter
+    private lateinit var adapter: ShippingAdapter
+    private lateinit var cartItems: ArrayList<ProductModel>
+    private lateinit var shippingAdapter: ShippingAdapter
 
     private lateinit var email: String
     private lateinit var firstName: String
@@ -35,22 +37,27 @@ class ShippingActivity : AppCompatActivity() {
     private lateinit var contact: String
     private lateinit var state: String
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityShippingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-
         productList = ArrayList()
 
-
         handleBtnClick()
-        productInformation()
+
+        val dataSource = intent.getStringExtra("DATA_SOURCE")
+        when (dataSource) {
+            "BUY_DRESS" -> setProductInformation()
+            "CART_FRAGMENT" -> gettingDataFromCart()
+            else -> {
+                // Handle unknown data source or default case
+                // You may want to show an error message or finish the activity
+                Toast.makeText(this, "Unknown data source", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
 
 
 
@@ -58,20 +65,140 @@ class ShippingActivity : AppCompatActivity() {
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
+
     }
 
+    private fun gettingDataFromCart() {
+        //Retrieve data from intent
+        cartItems = intent.getSerializableExtra("CART_ITEMS") as ArrayList<ProductModel>
+        val totalPrice = intent.getDoubleExtra("TOTAL_PRICE", 0.0)
+        val totalQuantity = cartItems.size
+        if(cartItems != null){
+            // Set up RecyclerView
+            shippingAdapter = ShippingAdapter(this, cartItems)
+            binding.rv.apply {
+                layoutManager = LinearLayoutManager(this@ShippingActivity)
+                adapter = shippingAdapter
+        }
+            // Set total price and quantity
+            binding.totalPrizeTxt.text = "$totalPrice"
+            binding.quantity.text = "$totalQuantity"
+            binding.subTotalTxt.text = totalPrice.toString()
+
+        }
+
+
+
+    }
 
 
     private fun handleBtnClick() {
         binding.apply {
             checkBox.setOnClickListener {
                 checkBox.isChecked
-                saveShippinInformaiton() }
+                saveShippinInformaiton()
+            }
+            continueButton.setOnClickListener {
+                continueButtonInfo()
+            }
+
         }
 
     }
 
-    private fun productInformation() {
+    private fun continueButtonInfo() {
+        val dataSource = intent.getStringExtra("DATA_SOURCE")
+        when (dataSource) {
+            "BUY_DRESS" -> sendingDataOfBuyDressActivity()
+            "CART_FRAGMENT" -> sendingDataOfCartFragment()
+            else -> {
+                // Handle unknown data source or default case
+                Toast.makeText(this, "Unknown data source", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+
+
+    }
+
+    private fun sendingDataOfCartFragment() {
+        // Add cart items and total price from cart fragment
+        var totalPrice = 0.0
+        for(product in cartItems){
+            if(product.discountPrice != null){
+                totalPrice += product.discountPrice!!
+            }
+        }
+        if(checkRequiredPlaces()){
+            val intentToPayment = Intent(this@ShippingActivity, PaymentActivity::class.java)
+            val dataSource = intent.getStringExtra("DATA_SOURCE")
+            intentToPayment.putExtra("CART_ITEMS", cartItems)
+            intentToPayment.putExtra("TOTAL_PRICE", totalPrice)
+            intentToPayment.putExtra("DATA_SOURCE", dataSource)
+            startActivity(intentToPayment)
+        }else{
+            Toast.makeText(this@ShippingActivity, "Please fill all the details.", Toast.LENGTH_SHORT).show()
+        }
+
+
+    }
+
+    private fun sendingDataOfBuyDressActivity() {
+        val intent = intent
+        val dressName = intent.getStringExtra("DressName")
+        val dressPrize = intent.getStringExtra("DiscountPrize")
+        val imageUrl = intent.getStringExtra("ImageUrl")
+        val dressQuantity = intent.getIntExtra("DressQuantity", 1)
+        val totalPrice = intent.getDoubleExtra("TotalPrice", 0.0)
+        val size = intent.getStringExtra("Size")
+        val color = intent.getStringExtra("DressColor")
+
+
+        if (checkRequiredPlaces()) {
+            // All required fields are filled, proceed with saving shipping information and starting PaymentActivity
+
+            val intentToPayment = Intent(this@ShippingActivity, PaymentActivity::class.java)
+            val dataSource = intent.getStringExtra("DATA_SOURCE")
+            intentToPayment.putExtra("DATA_SOURCE", dataSource)
+            intentToPayment.putExtra("DressName", dressName)
+            intentToPayment.putExtra("DiscountPrize", dressPrize)
+            intentToPayment.putExtra("ImageUrl", imageUrl)
+            intentToPayment.putExtra("DressQuantity", dressQuantity)
+            intentToPayment.putExtra("Size", size)
+            intentToPayment.putExtra("Color", color)
+            intentToPayment.putExtra("TotalPrice", totalPrice)
+
+            intentToPayment.putExtra("State", state)
+            intentToPayment.putExtra("Email", email)
+            intentToPayment.putExtra("FirstName", firstName)
+            intentToPayment.putExtra("LastName", lastName)
+            intentToPayment.putExtra("Address", address)
+            intentToPayment.putExtra("Contact", contact)
+            intentToPayment.putExtra("City", city)
+            intentToPayment.putExtra("Pin", pinCode)
+            startActivity(intentToPayment)
+        } else {
+            Toast.makeText(this@ShippingActivity, "Please fill all the details.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkRequiredPlaces():Boolean{
+        email = binding.userEmail.text.toString().trim()
+        state = binding.spinner.selectedItem.toString().trim()
+        firstName = binding.firstName.text.toString().trim()
+        lastName = binding.lastName.text.toString().trim()
+        address = binding.address.text.toString().trim()
+        city = binding.city.text.toString().trim()
+        contact = binding.contactNumber.text.toString().trim()
+        pinCode = binding.postalCode.text.toString().trim()
+
+        return (email.isNotEmpty() && firstName.isNotEmpty() && address.isNotEmpty()
+                && city.isNotEmpty() && pinCode.isNotEmpty() && contact.isNotEmpty())
+
+    }
+
+
+    private fun setProductInformation() {
         val intent = intent
         val dressName = intent.getStringExtra("DressName")
         val dressPrize = intent.getStringExtra("DiscountPrize")
@@ -97,52 +224,14 @@ class ShippingActivity : AppCompatActivity() {
                 )
             )
         }
-        adapter = CartAdapter(this, productList)
+        adapter = ShippingAdapter(this, productList)
         recyclerView = binding.rv
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-
         //setting prize
         binding.subTotalTxt.text = dressPrize.toString()
         binding.totalPrizeTxt.text = totalPrice.toString()
         binding.quantity.text = dressQuantity.toString()
-
-        binding.continueButton.setOnClickListener {
-            email = binding.userEmail.text.toString().trim()
-            state = binding.spinner.selectedItem.toString().trim()
-            firstName = binding.firstName.text.toString().trim()
-            lastName = binding.lastName.text.toString().trim()
-            address = binding.address.text.toString().trim()
-            city = binding.city.text.toString().trim()
-            contact = binding.contactNumber.text.toString().trim()
-            pinCode = binding.postalCode.text.toString().trim()
-            if (email.isNotEmpty() && firstName.isNotEmpty() && address.isNotEmpty() && city.isNotEmpty() && pinCode.isNotEmpty() && contact.isNotEmpty()) {
-                // All required fields are filled, proceed with saving shipping information and starting PaymentActivity
-
-                val intentToPayment = Intent(this@ShippingActivity, PaymentActivity::class.java)
-                intentToPayment.putExtra("DressName", dressName)
-                intentToPayment.putExtra("DiscountPrize", dressPrize)
-                intentToPayment.putExtra("ImageUrl", imageUrl)
-                intentToPayment.putExtra("DressQuantity", dressQuantity)
-                intentToPayment.putExtra("Size", size)
-                intentToPayment.putExtra("Color", color)
-                intentToPayment.putExtra("TotalPrice", totalPrice)
-
-                intentToPayment.putExtra("State",state)
-                intentToPayment.putExtra("Email",email)
-                intentToPayment.putExtra("FirstName" , firstName)
-                intentToPayment.putExtra("LastName" , lastName)
-                intentToPayment.putExtra("Address" , address)
-                intentToPayment.putExtra("Contact" , contact)
-                intentToPayment.putExtra("City" , city)
-                intentToPayment.putExtra("Pin",pinCode)
-                startActivity(intentToPayment)
-            } else {
-                // Show a toast indicating that all fields are required
-                Toast.makeText(this@ShippingActivity, "Please fill all the details.", Toast.LENGTH_SHORT).show()
-            }
-        }
-
 
     }
 
@@ -178,19 +267,23 @@ class ShippingActivity : AppCompatActivity() {
             saveInfoChecked,
             shippingMethod
         )
+        if(checkRequiredPlaces()){
+            firebaseFirestore.collection("users").document(userId).collection("shippingInfo")
+                .document(userId).set(shippingInfo).addOnSuccessListener {
+                    Toast.makeText(
+                        this@ShippingActivity, "Shipping details saved successfully", Toast.LENGTH_SHORT
+                    ).show()
+                }.addOnFailureListener { e ->
+                    Toast.makeText(
+                        this@ShippingActivity,
+                        "Error saving shipping details: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }else{
+            Toast.makeText(this@ShippingActivity, "Please fill all the details.", Toast.LENGTH_SHORT).show()
+        }
 
-        firebaseFirestore.collection("users").document(userId).collection("shippingInfo")
-            .document(userId).set(shippingInfo).addOnSuccessListener {
-                Toast.makeText(
-                    this@ShippingActivity, "Shipping details saved successfully", Toast.LENGTH_SHORT
-                ).show()
-            }.addOnFailureListener { e ->
-                Toast.makeText(
-                    this@ShippingActivity,
-                    "Error saving shipping details: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
 
 
     }

@@ -4,19 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.SpinnerAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sastabazar.R
 import com.example.sastabazar.activities.BuyDressActivity
-import com.example.sastabazar.databinding.RvItemCatBinding
+import com.example.sastabazar.databinding.RvItemCartBinding
+import com.example.sastabazar.databinding.RvPaymentBinding
+import com.example.sastabazar.databinding.RvShippingBinding
 import com.example.sastabazar.model.ProductModel
 
-class CategoryAdapter(var context: Context, var productList: ArrayList<ProductModel>) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
-    inner class ViewHolder(var binding: RvItemCatBinding) : RecyclerView.ViewHolder(binding.root)
+class PaymentAdapter(var context:Context , var productList:ArrayList<ProductModel>)
+    : RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {
+    inner class ViewHolder(var binding:RvPaymentBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = RvItemCatBinding.inflate(LayoutInflater.from(context), parent, false)
+        var binding = RvPaymentBinding.inflate(LayoutInflater.from(context),parent,false)
         return ViewHolder(binding)
     }
 
@@ -31,16 +34,13 @@ class CategoryAdapter(var context: Context, var productList: ArrayList<ProductMo
         }
         holder.binding.dressname.text = productList.get(position).name
         holder.binding.coupancode.text = productList.get(position).productCoupanCode
-        holder.binding.price.text = "Rs. " + productList.get(position).discountPrice.toString()
-        holder.binding.color.text = productList.get(position).productColor
+        holder.binding.price.text = "Rs: " + productList.get(position).discountPrice.toString()
         holder.binding.size.text = "Size: " + productList.get(position).productSize
 
         holder.itemView.setOnClickListener {
             context.startActivity(
-                Intent(context, BuyDressActivity::class.java).putExtra(
-                    "PRODUCT_ID",
-                    productList.get(position).id
-                )
+                Intent(context, BuyDressActivity::class.java)
+                    .putExtra("PRODUCT_ID", productList.get(position).id)
             )
 
         }

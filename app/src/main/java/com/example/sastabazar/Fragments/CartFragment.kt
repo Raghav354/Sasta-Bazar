@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sastabazar.activities.HomeActivity
+import com.example.sastabazar.activities.ShippingActivity
 import com.example.sastabazar.adaptors.CartAdapter
 import com.example.sastabazar.databinding.FragmentCartBinding
 import com.example.sastabazar.model.ProductModel
@@ -78,6 +79,19 @@ class CartFragment : Fragment() {
 
         binding.toolbar.setOnClickListener {
             startActivity(Intent(requireContext() , HomeActivity::class.java))
+        }
+        binding.checkout.setOnClickListener {
+            val intent = Intent(requireContext(), ShippingActivity::class.java)
+            var totalPrice = 0.0
+            for(product in cartItemList){
+                if(product.discountPrice != null){
+                    totalPrice += product.discountPrice!!
+                }
+            }
+            intent.putExtra("DATA_SOURCE", "CART_FRAGMENT")
+            intent.putExtra("CART_ITEMS", cartItemList)
+            intent.putExtra("TOTAL_PRICE" , totalPrice)
+            startActivity(intent)
         }
 
     }
