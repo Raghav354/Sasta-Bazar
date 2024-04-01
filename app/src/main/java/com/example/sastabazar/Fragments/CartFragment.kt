@@ -44,6 +44,7 @@ class CartFragment : Fragment() {
         cartAdapter = CartAdapter(requireContext(),cartItemList)
         binding.rvCart.adapter = cartAdapter
         binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
+        binding.spinKit.visibility = View.VISIBLE
 
         // Read cart data from Firebase
         val firebaseFirestore = Firebase.firestore
@@ -60,6 +61,7 @@ class CartFragment : Fragment() {
                     Log.d("CartFragment", " Size: ${product.productSize}")
                 }
                 cartAdapter.notifyDataSetChanged()
+                binding.spinKit.visibility = View.GONE
 
                 //total price of the products
                 var totalPrice = 0.0

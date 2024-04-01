@@ -78,5 +78,7 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.13.2")
 
+    implementation("com.github.ybq:Android-SpinKit:1.4.0")
+
 
 }

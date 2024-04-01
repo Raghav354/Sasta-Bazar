@@ -2,7 +2,6 @@ package com.example.sastabazar.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,8 +53,11 @@ class DashBoardFragment : Fragment() {
         handleButtonClick()
 
         productList = ArrayList()
-        adapter = ProductAdapter(requireContext(),productList)
+        adapter = ProductAdapter(requireContext(), productList)
         binding.mainRV.adapter = adapter
+
+        fetchingData(productList, adapter)
+        fetchingData(moreProductsList, moreProductsAdapter)
 
         binding.mainRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -92,8 +94,6 @@ class DashBoardFragment : Fragment() {
                 }
             }
         })
-        fetchingData(productList,adapter)
-        fetchingData(moreProductsList,moreProductsAdapter)
 
 
 //      Image slider ->  imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
@@ -205,6 +205,36 @@ class DashBoardFragment : Fragment() {
                     ).putExtra("Category", "Tops")
                 )
             }
+            kurta.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Kurta")
+                )
+            }
+            shirt.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Shirt")
+                )
+            }
+            tops.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Tops")
+                )
+            }
+
+            accessories.setOnClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(), ProjectCatActivity::class.java
+                    ).putExtra("Category", "Accessories")
+                )
+            }
+
             seeMore.setOnClickListener {
                 startActivity(Intent(requireContext(), ProjectCatActivity::class.java))
             }

@@ -44,6 +44,7 @@ class WishListFragment : Fragment() {
         //Reading wishlist data from Firebase
         val firebaseFirestore = Firebase.firestore
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        binding.spinKit.visibility = View.VISIBLE
         firebaseFirestore.collection("users")
             .document(userId)
             .collection("wishlist")
@@ -55,6 +56,7 @@ class WishListFragment : Fragment() {
                     wishlistitemList.add(product)
                 }
                 wishListAdapter.notifyDataSetChanged() // Update UI with wishlist items
+                binding.spinKit.visibility = View.GONE
             }
             .addOnFailureListener { e ->
                 Log.w("CartFragment", "Error reading cart items: ${e.message}")

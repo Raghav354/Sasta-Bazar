@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -62,12 +63,15 @@ class LoginActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
             if (result.resultCode == Activity.RESULT_OK) {
+                binding.spinKit.visibility = View.VISIBLE
+                makeViewInvisible()
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 if (task.isSuccessful) {
                     val account: GoogleSignInAccount? = task.result
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                     Firebase.auth.signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
+                            binding.spinKit.visibility = View.GONE
                             showLoginSuccesDialog()
 //                            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
 //                            finish()
@@ -175,9 +179,23 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             finish()
             Toast.makeText(this, "Logged in Successfully...", Toast.LENGTH_SHORT)
-                                .show()
+                .show()
         }
 
         loginsuccessdialog.show()
+    }
+
+    private fun makeViewInvisible() {
+        binding.login.visibility = View.INVISIBLE
+        binding.imageView3.visibility = View.INVISIBLE
+        binding.email.visibility = View.INVISIBLE
+        binding.password.visibility = View.INVISIBLE
+        binding.forgotPass.visibility = View.INVISIBLE
+        binding.signUpText.visibility = View.INVISIBLE
+        binding.materialDivider.visibility = View.INVISIBLE
+        binding.google.visibility = View.INVISIBLE
+        binding.bottomImage.visibility = View.INVISIBLE
+        binding.text.visibility = View.INVISIBLE
+        binding.textView4.visibility = View.INVISIBLE
     }
 }

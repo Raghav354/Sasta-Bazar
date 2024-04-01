@@ -190,12 +190,85 @@
                         android:scaleType="fitXY"
                         android:padding="@dimen/_8sdp"
                         android:src="@drawable/sari" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Saree"
-                        />
+                        android:text="Saree" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/kurta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/ellipse_round"
+                        android:padding="@dimen/_8sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/kurta" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Kurta" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/shirt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/ellipse_round"
+                        android:padding="@dimen/_8sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/shirt" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Shirt" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/accessories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:background="@drawable/ellipse_round"
+                        android:padding="@dimen/_8sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/accessories" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Accessories" />
 
                 </LinearLayout>
 
