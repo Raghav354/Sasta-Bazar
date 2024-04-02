@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -80,6 +81,8 @@ class SignUpActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 if (task.isSuccessful) {
+                    binding.spinKit.visibility = View.VISIBLE
+                    makeViewInvisible()
                     val account: GoogleSignInAccount? = task.result
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                     Firebase.auth.signInWithCredential(credential).addOnCompleteListener {
@@ -91,10 +94,12 @@ class SignUpActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
                         }
+                        binding.spinKit.visibility = View.GONE
                     }
                 }
             } else {
                 Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show()
+                binding.spinKit.visibility = View.GONE
 
             }
         }
@@ -108,13 +113,11 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-
         Firebase.auth.createUserWithEmailAndPassword(
             binding.email.text.toString(),
             binding.pass.text.toString()
         ).addOnCompleteListener {
             if (it.isSuccessful) {
-
                 val user = Firebase.auth.currentUser
                 sendVerificationEmail(user)
                 saveData()
@@ -206,6 +209,20 @@ class SignUpActivity : AppCompatActivity() {
 
         }
 
+    }
+    private fun makeViewInvisible() {
+        binding.firstName.visibility = View.INVISIBLE
+        binding.lastName.visibility = View.INVISIBLE
+        binding.productCode.visibility = View.INVISIBLE
+        binding.imageView.visibility = View.INVISIBLE
+        binding.email.visibility = View.INVISIBLE
+        binding.pass.visibility = View.INVISIBLE
+        binding.comPass.visibility = View.INVISIBLE
+        binding.switchText.visibility = View.INVISIBLE
+        binding.materialDivider.visibility = View.INVISIBLE
+        binding.google.visibility = View.INVISIBLE
+        binding.signUp .visibility = View.INVISIBLE
+        binding.textView4.visibility = View.INVISIBLE
     }
 
 

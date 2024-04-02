@@ -52,12 +52,18 @@ class DashBoardFragment : Fragment() {
 
         handleButtonClick()
 
+
         productList = ArrayList()
         adapter = ProductAdapter(requireContext(), productList)
         binding.mainRV.adapter = adapter
 
+        moreProductsAdapter = ProductAdapter(requireContext(), moreProductsList)
+        binding.moreProductsRV.adapter = moreProductsAdapter
+
         fetchingData(productList, adapter)
         fetchingData(moreProductsList, moreProductsAdapter)
+
+
 
         binding.mainRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -78,8 +84,6 @@ class DashBoardFragment : Fragment() {
         })
 
 
-        moreProductsAdapter = ProductAdapter(requireContext(), moreProductsList)
-        binding.moreProductsRV.adapter = moreProductsAdapter
 
         // Add scroll listener for endless scrolling
         binding.moreProductsRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {

@@ -71,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                     Firebase.auth.signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            binding.spinKit.visibility = View.GONE
                             showLoginSuccesDialog()
 //                            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
 //                            finish()
@@ -79,11 +78,12 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
                         }
+                        binding.spinKit.visibility = View.GONE
                     }
                 }
             } else {
                 Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show()
-
+                binding.spinKit.visibility = View.GONE
             }
         }
 
@@ -115,7 +115,8 @@ class LoginActivity : AppCompatActivity() {
     private fun userLogin() {
         val email = binding.email.text.toString()
         val pass = binding.password.text.toString()
-
+        binding.spinKit.visibility = View.VISIBLE
+        makeViewInvisible()
         if (email.isNotEmpty() && pass.isNotEmpty()) {
             Firebase.auth.signInWithEmailAndPassword(
                 email, pass
@@ -132,15 +133,22 @@ class LoginActivity : AppCompatActivity() {
                             "Please verify your email by registering!!!",
                             Toast.LENGTH_SHORT
                         ).show()
+                        makeViewVisible()
                     }
                 } else {
                     Toast.makeText(this, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
+                    makeViewVisible()
                 }
+                binding.spinKit.visibility = View.GONE
+
             }
+
         } else {
             Toast.makeText(this, "Empty fields are not allowed!!", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
     private fun textWatcherFun() {
         //textWatcher on login button
@@ -194,8 +202,21 @@ class LoginActivity : AppCompatActivity() {
         binding.signUpText.visibility = View.INVISIBLE
         binding.materialDivider.visibility = View.INVISIBLE
         binding.google.visibility = View.INVISIBLE
-        binding.bottomImage.visibility = View.INVISIBLE
+//        binding.bottomImage.visibility = View.INVISIBLE
         binding.text.visibility = View.INVISIBLE
         binding.textView4.visibility = View.INVISIBLE
+    }
+    private fun makeViewVisible() {
+        binding.login.visibility = View.VISIBLE
+        binding.imageView3.visibility = View.VISIBLE
+        binding.email.visibility = View.VISIBLE
+        binding.password.visibility = View.VISIBLE
+        binding.forgotPass.visibility = View.VISIBLE
+        binding.signUpText.visibility = View.VISIBLE
+        binding.materialDivider.visibility = View.VISIBLE
+        binding.google.visibility = View.VISIBLE
+//        binding.bottomImage.visibility = View.VISIBLE
+        binding.text.visibility = View.VISIBLE
+        binding.textView4.visibility = View.VISIBLE
     }
 }
