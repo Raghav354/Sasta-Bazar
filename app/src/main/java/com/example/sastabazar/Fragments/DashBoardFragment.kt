@@ -34,6 +34,8 @@ class DashBoardFragment : Fragment() {
     private lateinit var moreProductsAdapter:ProductAdapter
     private var isFetchingMore = false
     private var lastVisibleProduct: DocumentSnapshot? = null
+    private val firestore = Firebase.firestore
+
 
 
     override fun onCreateView(
@@ -52,7 +54,6 @@ class DashBoardFragment : Fragment() {
 
         handleButtonClick()
 
-
         productList = ArrayList()
         adapter = ProductAdapter(requireContext(), productList)
         binding.mainRV.adapter = adapter
@@ -62,6 +63,7 @@ class DashBoardFragment : Fragment() {
 
         fetchingData(productList, adapter)
         fetchingData(moreProductsList, moreProductsAdapter)
+        imageSlider()
 
 
 
@@ -100,7 +102,13 @@ class DashBoardFragment : Fragment() {
         })
 
 
-//      Image slider ->  imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
+
+
+
+    }
+
+    private fun imageSlider() {
+//        Image slider ->  imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
         val imageList = ArrayList<SlideModel>()
 
         imageList.add(SlideModel(R.drawable.sale1))
@@ -109,12 +117,9 @@ class DashBoardFragment : Fragment() {
 
         val imageSlider = binding.imageSlider
         imageSlider.setImageList(imageList)
-
-
     }
 
     private fun fetchingData(productList: ArrayList<ProductModel>, adapter: ProductAdapter) {
-        val firestore = Firebase.firestore
         val productsCollection = firestore.collection("Products").limit(20)
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
@@ -139,7 +144,6 @@ class DashBoardFragment : Fragment() {
     private fun fetchMoreProducts() {
         isFetchingMore = true
 
-        val firestore = Firebase.firestore
         val productsCollection = if (lastVisibleProduct != null) {
             firestore.collection("Products")
                 .startAfter(lastVisibleProduct!!)
@@ -213,7 +217,7 @@ class DashBoardFragment : Fragment() {
                 startActivity(
                     Intent(
                         requireContext(), ProjectCatActivity::class.java
-                    ).putExtra("Category", "Kurta")
+                    ).putExtra("Category", "Kurti")
                 )
             }
             shirt.setOnClickListener {

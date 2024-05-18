@@ -103,7 +103,7 @@ class BuyDressActivity : AppCompatActivity() {
                 "imageUrl" to productModel.imageUrl,
                 "discountPrice" to productModel.discountPrice,
                 "productSize" to productModel.productSize,
-                "productColor" to selectedDressColor.toString()
+                "productColor" to productModel.productColor
                 // Add other product details as needed
             ), SetOptions.merge()
         )
@@ -181,7 +181,7 @@ class BuyDressActivity : AppCompatActivity() {
                 "imageUrl" to productModel.imageUrl,
                 "discountPrice" to productModel.discountPrice,
                 "productSize" to productModel.productSize,
-                "productColor" to selectedDressColor.toString()
+                "productColor" to productModel.productColor
                 // Add other product details as needed
             ), SetOptions.merge()
         )
@@ -265,6 +265,7 @@ class BuyDressActivity : AppCompatActivity() {
         intent.putExtra("ImageUrl", productModel.imageUrl)
         intent.putExtra("DressColor",selectedDressColor)
         intent.putExtra("Size",selectedDressSize)
+        intent.putExtra("CoupanCode",productModel.productCoupanCode)
         startActivity(intent)
     }
 

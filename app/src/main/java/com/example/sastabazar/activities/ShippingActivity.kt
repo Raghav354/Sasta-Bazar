@@ -37,6 +37,7 @@ class ShippingActivity : AppCompatActivity() {
     private lateinit var contact: String
     private lateinit var state: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -152,6 +153,7 @@ class ShippingActivity : AppCompatActivity() {
         val totalPrice = intent.getDoubleExtra("TotalPrice", 0.0)
         val size = intent.getStringExtra("Size")
         val color = intent.getStringExtra("DressColor")
+        val coupanCode = intent.getStringExtra("CoupanCode")
 
 
         if (checkRequiredPlaces()) {
@@ -167,6 +169,7 @@ class ShippingActivity : AppCompatActivity() {
             intentToPayment.putExtra("Size", size)
             intentToPayment.putExtra("Color", color)
             intentToPayment.putExtra("TotalPrice", totalPrice)
+            intentToPayment.putExtra("CoupanCode",coupanCode)
 
             intentToPayment.putExtra("State", state)
             intentToPayment.putExtra("Email", email)
@@ -207,6 +210,7 @@ class ShippingActivity : AppCompatActivity() {
         val totalPrice = intent.getDoubleExtra("TotalPrice", 0.0)
         val size = intent.getStringExtra("Size")
         val color = intent.getStringExtra("DressColor")
+        val coupanCode = intent.getStringExtra("CoupanCode")
 
         if (size != null) {
             productList.add(
@@ -218,7 +222,7 @@ class ShippingActivity : AppCompatActivity() {
                     null,
                     color,
                     imageUrl.toString(),
-                    "AVG45",
+                    coupanCode,
                     discountPercentage = null,
                     size
                 )

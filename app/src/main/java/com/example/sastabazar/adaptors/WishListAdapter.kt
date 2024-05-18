@@ -33,7 +33,7 @@ class WishListAdapter(var context: Context , var productList:ArrayList<ProductMo
         holder.binding.dressname.text = productList.get(position).name
         holder.binding.coupancode.text = productList.get(position).productCoupanCode
         holder.binding.price.text = "Rs. " + productList.get(position).discountPrice.toString()
-//        holder.binding.color.text = productList.get(position).color.toString()
+        holder.binding.color.text = "Color: "+productList.get(position).productColor.toString()
         holder.binding.size.text = "Size: " + productList.get(position).productSize
 
         holder.itemView.setOnClickListener {

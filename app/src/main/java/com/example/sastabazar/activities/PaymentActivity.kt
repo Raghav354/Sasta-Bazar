@@ -95,6 +95,7 @@ class PaymentActivity : AppCompatActivity() , PaymentResultListener {
         val size = intent.getStringExtra("Size")
         val color = intent.getStringExtra("DressColor")
         val totalPrice = intent.getDoubleExtra("TotalPrice", 0.0)
+        val coupanCode = intent.getStringExtra("CoupanCode")
         totalAmount = totalPrice
 
         productList.add(
@@ -106,7 +107,7 @@ class PaymentActivity : AppCompatActivity() , PaymentResultListener {
                 null,
                 color,
                 imageUrl.toString(),
-                "AVG45",
+                coupanCode,
                 discountPercentage = null,
                 size
             )

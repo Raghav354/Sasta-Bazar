@@ -75,7 +75,7 @@
             android:fontFamily="@font/monteserrat_light"
             android:text="Size : S"
             android:textColor="#5C5757"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toBottomOf="@+id/coupancode" />
@@ -86,11 +86,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/monteserrat_light"
             android:text="Color"
             android:textColor="#5C5757"
             android:textSize="@dimen/_10ssp"
-            android:textStyle="bold"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toBottomOf="@+id/size" />
@@ -114,16 +113,16 @@
             app:layout_constraintStart_toEndOf="@+id/dressname"
             app:layout_constraintTop_toTopOf="@+id/dressname" />
 
-        <ImageView
-            android:id="@+id/coloricon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:background="@drawable/coloritem"
-            android:backgroundTint="@color/primary_pink"
-            app:layout_constraintBottom_toBottomOf="@+id/color"
-            app:layout_constraintStart_toEndOf="@+id/color"
-            app:layout_constraintTop_toTopOf="@+id/color" />
+<!--        <ImageView-->
+<!--            android:id="@+id/coloricon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/_16sdp"-->
+<!--            android:background="@drawable/coloritem"-->
+<!--            android:backgroundTint="@color/primary_pink"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/color"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/color"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/color" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
