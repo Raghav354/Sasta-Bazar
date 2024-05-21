@@ -85,5 +85,5 @@ This project is the result of individual efforts.
 
 
 ## 🚀 About Me
-Hello, I'm Raghavendra Kumar Sharma, currently pursuing a Master's in Computer Application from **NIT Jamshedpur**. My passion lies in **Android development** , with a strong foundation in Data Structures and Algorithms (DSA).
+Hello, I'm Raghavendra Kumar Sharma, currently pursuing a Master's in Computer Application from **NIT Jamshedpur**. My passion lies in **Android development**, with a strong foundation in **Data Structures and Algorithms (DSA)**.
 
