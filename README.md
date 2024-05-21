@@ -4,12 +4,47 @@
 
 Sasta Bazar is a comprehensive Android application designed for shopping clothing items, with a specialized focus on dresses. The platform caters to a wide audience, offering a diverse selection of affordable and stylish clothing options for customers. In addition to the user-facing shopping app, the project includes an admin application, empowering administrators to manage and upload products efficiently.
 
+
+## Screenshots
+
+<p align="center">
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/36711c9d-1036-4430-a3b2-c296972cc1c1" alt="Signup" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/5f32755f-9d06-4c2c-b928-236ca6b3ae2a" alt="Login" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/611f1981-bb88-460b-99af-d36e06dc70d2" alt="Login_DialogBox" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/042d912c-67c1-48a2-8628-4ab347f2713e" alt="Dashboard1" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/51b854d5-a8eb-46d1-8584-d65083756d30" alt="Dashboard2" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/2577eb39-9d3e-48b7-ac56-a9256c5c1ae9" alt="Wishlist" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/e1601f71-748d-407e-9ff3-aefc8089e4b0" alt="Cart" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/8b91c16f-289a-42e2-94b9-190e0ea3c772" alt="Profile" width="200"/>
+  
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/b8ef474b-42e3-457a-b147-52e8bc864978" alt="SeeMore" width="200"/>
+
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/3e7d45c8-aec9-483d-b0bc-76f3abf8ae50" alt="Product_details" width="200"/>
+  
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/30a7d7d4-f5b0-4121-b7d5-b67dae706f41" alt="Shipping1" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/bac8f47b-a498-42a7-972c-2e88fbc76a07" alt="Shipping2" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/e813a138-3a77-410d-8fe2-302f0916490d" alt="Confirm_Order" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/232d008b-203d-40ae-8ed3-dc5bd212cdbd" alt="Payment_Gateway1" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/0eb1c019-0696-45b1-9ae9-c528db391264" alt="Payment_Gateway2" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/497075b2-0015-43fe-a269-177b5fb4354c" alt="Payment_Gateway2" width="200"/>
+  
+</p>
+
+
+
+
+
 ## Demo video
-[![Watch the video](https://github.com/Raghav354/Sasta-Bazar/assets/137503421/be8b5fde-1d51-48bc-b527-134f800dbe3e)](https://drive.google.com/file/d/1K9U6jm-rvRfdo7lJfJGR0eRsXE4gC0aO/view?usp=drive_link)
+
+<p align="center">
+  <a href="https://drive.google.com/file/d/1K9U6jm-rvRfdo7lJfJGR0eRsXE4gC0aO/view?usp=sharing" target="_blank">
+    <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/f8ada447-a36b-4928-927f-8a4228a5a539" alt="Demo Video" width="250"/>
+  </a>
+</p>
 
 ## Key Features
 
-- **Product Catalog:** Offers a wide range of dresses for both boys and girls, categorized into various sections like tops, bottoms, dresses, and more. Users can browse through the catalog to explore different clothing options.
+- **Product Catalog:** Offers a wide range of dresses , categorized into various sections like tops, bottoms, dresses, and more. Users can browse through the catalog to explore different clothing options.
 
 - **User Authentication:** Supports user authentication and account management functionalities using Firebase Authentication. Users can create accounts, log in securely, and manage their profiles.
 
@@ -35,7 +70,7 @@ Sasta Bazar is a comprehensive Android application designed for shopping clothin
 
 ## Contributions
 
-This project is the result of individual efforts, showcasing skills in Android app development, UI design, and logical implementation.
+This project is the result of individual efforts.
 
 ## Future Enhancements
 
