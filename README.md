@@ -12,12 +12,12 @@ Sasta Bazar is a comprehensive Android application designed for shopping clothin
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/5f32755f-9d06-4c2c-b928-236ca6b3ae2a" alt="Login" width="200"/>
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/611f1981-bb88-460b-99af-d36e06dc70d2" alt="Login_DialogBox" width="200"/>
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/042d912c-67c1-48a2-8628-4ab347f2713e" alt="Dashboard1" width="200"/>
-  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/51b854d5-a8eb-46d1-8584-d65083756d30" alt="Dashboard2" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/649e75fe-b5fc-43c7-b4d1-20e695222d09" alt="Dashboard2" width="200"/>
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/2577eb39-9d3e-48b7-ac56-a9256c5c1ae9" alt="Wishlist" width="200"/>
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/e1601f71-748d-407e-9ff3-aefc8089e4b0" alt="Cart" width="200"/>
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/8b91c16f-289a-42e2-94b9-190e0ea3c772" alt="Profile" width="200"/>
   
-  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/b8ef474b-42e3-457a-b147-52e8bc864978" alt="SeeMore" width="200"/>
+  <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/e6f10aaf-3bf3-466f-8008-225741db5ac1" alt="SeeMore" width="200"/>
 
   <img src="https://github.com/Raghav354/Sasta-Bazar/assets/137503421/3e7d45c8-aec9-483d-b0bc-76f3abf8ae50" alt="Product_details" width="200"/>
   
