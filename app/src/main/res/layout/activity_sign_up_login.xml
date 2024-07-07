@@ -107,6 +107,7 @@
             android:layout_margin="@dimen/_8sdp"
             android:backgroundTint="#F68B8B"
             android:textSize="@dimen/_15sdp"
+            android:textColor="@color/black"
             android:text="Signup"
             android:enabled="false"
             android:padding="@dimen/_10sdp"/>

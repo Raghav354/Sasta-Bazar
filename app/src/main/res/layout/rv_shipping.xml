@@ -6,12 +6,16 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardElevation="@dimen/_8sdp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:focusable="true"
+    android:clickable="true"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/_4sdp"
+        android:background="?android:attr/selectableItemBackground"
         >
 
 

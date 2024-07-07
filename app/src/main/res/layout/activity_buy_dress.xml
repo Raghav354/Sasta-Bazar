@@ -162,8 +162,8 @@
             android:id="@+id/seeMore_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_30sdp"
-            android:text="See more"
+            android:layout_marginRight="16dp"
+            android:text="Dress Quantity"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="@+id/sizetext"
             app:layout_constraintRight_toRightOf="parent"
@@ -221,13 +221,11 @@
             android:id="@+id/incrementLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/seeMore_details"
-            app:layout_constraintStart_toStartOf="@+id/seeMore_details"
-            app:layout_constraintTop_toBottomOf="@id/seeMore_details">
+            app:layout_constraintBottom_toBottomOf="@+id/sizeLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sizeLayout">
 
 
             <ImageButton
@@ -373,6 +371,7 @@
             android:text="Buy Now"
             android:textAllCaps="false"
             android:textColor="@color/white"
+
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/productDesc"

@@ -31,7 +31,7 @@ class ShippingAdapter(var context:Context , var productList:ArrayList<ProductMod
         {
             placeholder(R.drawable.image)
         }
-        holder.binding.dressname.text = productList.get(position).name
+        holder.binding.dressname.text = capitalizeWords(productList.get(position).name.toString())
         holder.binding.coupancode.text = productList.get(position).productCoupanCode
         holder.binding.price.text = "Rs: " + productList.get(position).discountPrice.toString()
         holder.binding.size.text = "Size: " + productList.get(position).productSize
@@ -43,6 +43,10 @@ class ShippingAdapter(var context:Context , var productList:ArrayList<ProductMod
             )
 
         }
+    }
+
+    private fun capitalizeWords(input: String): String {
+        return input.split(" ").joinToString(" ") { it.capitalize() }
     }
 
 }
