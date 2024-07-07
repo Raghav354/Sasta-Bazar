@@ -2,7 +2,7 @@
 
 ## Overview
 
-Sasta Bazar is a comprehensive Android application designed for shopping clothing items, with a specialized focus on dresses. The platform caters to a wide audience, offering a diverse selection of affordable and stylish clothing options for customers. In addition to the user-facing shopping app, the project includes an admin application, empowering administrators to manage and upload products efficiently.
+Sasta Bazar is a comprehensive Android application designed for shopping clothing items, specifically for girls. The platform offers a diverse selection of affordable and stylish dresses. In addition to the user-facing shopping app, the project includes an admin application for efficient product management and uploads by administrators.
 
 
 ## Screenshots
